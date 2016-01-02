@@ -13,32 +13,76 @@ $primary-spacing: 1em;
 body {
   font-family: 'Open Sans', sans-serif;
   color: $font;
+  line-height: 1.5;
   margin: 0;
+  overflow-y: scroll;
+}
+
+h1, h2, ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+
+  }
+}
+
+.container {
+    margin: auto;
+    max-width: 1200px;
+}
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
 }
 
 header {
-  padding: $primary-spacing;
-  background: $primary;
   color: $primary-font;
+  background: $primary;
 
-  text-align: center;
+  a {
+    color: $primary-font;
+  }
+
+  .header-main {
+    padding: $primary-spacing;
+    text-align: center;
+  }
 
   nav {
     background: $secondary;
+    padding: $primary-spacing;
+    position: relative;
   }
 
   ul {
     list-style: none;
 
+    &:first-of-type {
+      float: left;
+    }
+
+    &:last-of-type {
+      float: right;
+    }
+
+    li {
+      display: inline-block;
+      padding: 0 10px;
+
+    }
   }
-}
-
-h1 {
-  font-size: 1.7em;
-}
-
-h2 {
-  font-size: 1.3em;
 }
 
 .lb {
@@ -46,6 +90,17 @@ h2 {
     border-color: $primary;
     border-style: solid;
     border-radius: $rounded;
-    height: 100px;
-    width: 100px;
+    height: 110px;
+    width: 110px;
+    position: absolute;
+    left: 50%;
+    margin-left: -55px;
+}
+
+h1 {
+  font-size: 1.7em;
+}
+
+h2 {
+  font-size: 1.1em;
 }
