@@ -1,10 +1,13 @@
-$primary: #0d8aaa;
-$secondary: #50bad4;
+$primary: #f7f7f7;
+$secondary: #FFC77F;
 $font: #000;
 $primary-font: #fff;
 $rounded: 50%;
 
+$max-width: 1000px;
 $primary-spacing: 1em;
+$grid-col: 8.333;
+$grid-padding: 1em 1em 1em 0;
 
 * {
   box-sizing: border-box;
@@ -24,7 +27,7 @@ h1, h2, ul {
 }
 
 a {
-  color: $primary;
+  color: #212121;
   text-decoration: none;
 
   &:hover {
@@ -33,8 +36,29 @@ a {
 }
 
 .container {
-    margin: auto;
-    max-width: 1200px;
+  max-width: $max-width;
+  margin: auto;
+
+  [class*="grid-"] {
+    float: left;
+    padding: $grid-padding;
+
+    &:last-of-type {
+      padding-right: 0;
+    }
+  }
+
+  @for $i from 1 through 12 {
+    .grid-#{$i} {
+      width: 0% + if($i == 12, ceil($grid-col * $i), $grid-col * $i);
+    }
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 .cf:before,
@@ -49,11 +73,7 @@ a {
 
 header {
   color: $primary-font;
-  background: $primary;
-
-  a {
-    color: $primary-font;
-  }
+  background: url('/img/pattern-crossword.png') repeat $primary;
 
   .header-main {
     padding: $primary-spacing;
@@ -79,15 +99,14 @@ header {
 
     li {
       display: inline-block;
-      padding: 0 10px;
-
+      padding-right: 15px;
     }
   }
 }
 
 .lb {
-    border-width: 5px;
-    border-color: $primary;
+    border-width: 3px;
+    border-color: #f7f7f7;
     border-style: solid;
     border-radius: $rounded;
     height: 110px;
@@ -98,7 +117,7 @@ header {
 }
 
 h1 {
-  font-size: 1.7em;
+  font-size: 1.5em;
 }
 
 h2 {

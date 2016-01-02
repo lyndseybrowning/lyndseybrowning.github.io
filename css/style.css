@@ -13,12 +13,45 @@ h1, h2, ul {
   padding: 0; }
 
 a {
-  color: #0d8aaa;
+  color: #212121;
   text-decoration: none; }
 
 .container {
-  margin: auto;
-  max-width: 1200px; }
+  max-width: 1000px;
+  margin: auto; }
+  .container [class*="grid-"] {
+    float: left;
+    padding: 1em 1em 1em 0; }
+    .container [class*="grid-"]:last-of-type {
+      padding-right: 0; }
+  .container .grid-1 {
+    width: 8.333%; }
+  .container .grid-2 {
+    width: 16.666%; }
+  .container .grid-3 {
+    width: 24.999%; }
+  .container .grid-4 {
+    width: 33.332%; }
+  .container .grid-5 {
+    width: 41.665%; }
+  .container .grid-6 {
+    width: 49.998%; }
+  .container .grid-7 {
+    width: 58.331%; }
+  .container .grid-8 {
+    width: 66.664%; }
+  .container .grid-9 {
+    width: 74.997%; }
+  .container .grid-10 {
+    width: 83.33%; }
+  .container .grid-11 {
+    width: 91.663%; }
+  .container .grid-12 {
+    width: 100%; }
+  .container:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .cf:before,
 .cf:after {
@@ -30,14 +63,12 @@ a {
 
 header {
   color: #fff;
-  background: #0d8aaa; }
-  header a {
-    color: #fff; }
+  background: url("/img/pattern-crossword.png") repeat #f7f7f7; }
   header .header-main {
     padding: 1em;
     text-align: center; }
   header nav {
-    background: #50bad4;
+    background: #FFC77F;
     padding: 1em;
     position: relative; }
   header ul {
@@ -48,11 +79,11 @@ header {
       float: right; }
     header ul li {
       display: inline-block;
-      padding: 0 10px; }
+      padding-right: 15px; }
 
 .lb {
-  border-width: 5px;
-  border-color: #0d8aaa;
+  border-width: 3px;
+  border-color: #f7f7f7;
   border-style: solid;
   border-radius: 50%;
   height: 110px;
@@ -62,7 +93,7 @@ header {
   margin-left: -55px; }
 
 h1 {
-  font-size: 1.7em; }
+  font-size: 1.5em; }
 
 h2 {
   font-size: 1.1em; }
