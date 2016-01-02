@@ -1,0 +1,51 @@
+$primary: #0d8aaa;
+$secondary: #50bad4;
+$font: #000;
+$primary-font: #fff;
+$rounded: 50%;
+
+$primary-spacing: 1em;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: $font;
+  margin: 0;
+}
+
+header {
+  padding: $primary-spacing;
+  background: $primary;
+  color: $primary-font;
+
+  text-align: center;
+
+  nav {
+    background: $secondary;
+  }
+
+  ul {
+    list-style: none;
+
+  }
+}
+
+h1 {
+  font-size: 1.7em;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
+.lb {
+    border-width: 5px;
+    border-color: $primary;
+    border-style: solid;
+    border-radius: $rounded;
+    height: 100px;
+    width: 100px;
+}
