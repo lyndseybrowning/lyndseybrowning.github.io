@@ -405,6 +405,11 @@ a {
   a:hover {
     color: #FFC77F; }
 
+.img-hover img {
+  border: 1px solid transparent; }
+  .img-hover img:hover {
+    border-color: #e3e2de; }
+
 .floatl {
   float: left; }
 
