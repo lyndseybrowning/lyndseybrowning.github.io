@@ -401,8 +401,7 @@ html, body {
     padding-right: 0; } }
 
 a {
-  color: #212121;
-  text-decoration: none; }
+  color: #212121; }
 
 .floatl {
   float: left; }
@@ -453,6 +452,8 @@ header {
   header nav {
     background: #FFC77F;
     position: relative; }
+    header nav a {
+      text-decoration: none; }
   header ul {
     list-style: none; }
     header ul:first-of-type {
