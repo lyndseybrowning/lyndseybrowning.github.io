@@ -66,7 +66,7 @@ gulp.task('script', function() {
 
 // watch
 gulp.task('watch', function() {
-   gulp.watch(paths.scss + 'style.scss', ['style']);
+   gulp.watch(paths.scss + '**/*.scss', ['style']);
    gulp.watch(paths.js + '*.js', ['lint', 'script']);
    gulp.watch('*.html').on('change', reload);
 });
