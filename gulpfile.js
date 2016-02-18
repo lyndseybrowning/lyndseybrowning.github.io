@@ -31,17 +31,17 @@ gulp.task('bs-reload', reload);
 // styles
 gulp.task('style', function() {
   return gulp
-        .src(paths.scss + 'style.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers: ['last 4 versions'],
-            cascade: false
-        }))
-        .pipe(gulp.dest('css'))
-        .pipe(minify())
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('build'))
-        .pipe(browserSync.stream())
+    .src(paths.scss + 'style.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+        browsers: ['last 4 versions'],
+        cascade: false
+    }))
+    .pipe(gulp.dest('css'))
+    .pipe(minify())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest('build'))
+    .pipe(browserSync.stream())
 });
 
 // lint
