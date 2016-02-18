@@ -12,6 +12,10 @@ var uglify = require('gulp-uglify');
 
 var local = 'local.lyndseyb.net';
 var reload = browserSync.reload;
+var paths = {
+  scss: 'css/scss/',
+  js: 'js/'
+};
 
 // browser sync
 gulp.task('browser-sync',  function() {
@@ -27,7 +31,7 @@ gulp.task('bs-reload', reload);
 // styles
 gulp.task('style', function() {
   return gulp
-        .src('css/sass/style.scss')
+        .src(paths.scss + 'style.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 4 versions'],
@@ -43,7 +47,7 @@ gulp.task('style', function() {
 // lint
 gulp.task('lint', function() {
   return gulp
-    .src('js/*.js')
+    .src(paths.js + '*.js')
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError())
@@ -52,7 +56,7 @@ gulp.task('lint', function() {
 // script
 gulp.task('script', function() {
   return gulp
-    .src('js/*.js')
+    .src(paths.js + '*.js')
     .pipe(babel())
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
@@ -62,8 +66,8 @@ gulp.task('script', function() {
 
 // watch
 gulp.task('watch', function() {
-   gulp.watch('css/sass/style.scss', ['style']);
-   gulp.watch('js/*.js', ['lint', 'script']);
+   gulp.watch(paths.scss + 'style.scss', ['style']);
+   gulp.watch(paths.js + '*.js', ['lint', 'script']);
    gulp.watch('*.html').on('change', reload);
 });
 

@@ -53,6 +53,11 @@ a {
     display: table;
     clear: both; }
 
+@media handheld, only screen and (max-width: 767px) {
+  .container [class*='grid-'] {
+    width: 100%;
+    padding-right: 0; } }
+
 .cf:before,
 .cf:after {
   content: " ";
