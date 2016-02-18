@@ -451,8 +451,7 @@ p {
   border-bottom: 1px solid #535353; }
 
 header {
-  color: #fff;
-  background: url("/img/pattern-crossword.png") repeat #f7f7f7; }
+  color: #fff; }
   header a {
     text-decoration: none; }
     header a:hover {
