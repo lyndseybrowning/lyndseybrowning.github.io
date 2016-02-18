@@ -402,6 +402,8 @@ html, body {
 
 a {
   color: #212121; }
+  a:hover {
+    color: #FFC77F; }
 
 .floatl {
   float: left; }
@@ -446,14 +448,13 @@ p {
 header {
   color: #fff;
   background: url("/img/pattern-crossword.png") repeat #f7f7f7; }
-  header .header-main {
-    padding: 1em;
-    text-align: center; }
+  header a {
+    text-decoration: none; }
+    header a:hover {
+      color: #212121; }
   header nav {
     background: #FFC77F;
     position: relative; }
-    header nav a {
-      text-decoration: none; }
   header ul {
     list-style: none; }
     header ul:first-of-type {
@@ -463,8 +464,10 @@ header {
     header ul li {
       display: inline-block;
       padding-right: 15px; }
-    header ul a:hover {
-      border-bottom: 1px solid #535353; }
+    header ul a {
+      text-decoration: none; }
+      header ul a:hover {
+        border-bottom: 1px solid #535353; }
   header .lb {
     border-width: 3px;
     border-color: #f7f7f7;

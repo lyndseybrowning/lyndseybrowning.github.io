@@ -2,18 +2,17 @@ header {
   color: $primary-font;
   background: url('/img/pattern-crossword.png') repeat $primary-color;
 
-  .header-main {
-    padding: $def-spacing;
-    text-align: center;
+  a {
+    text-decoration: none;
+
+    &:hover {
+      color: $links-color;
+    }
   }
 
   nav {
     background: $secondary-color;
     position: relative;
-
-    a {
-      text-decoration: none;
-    }
   }
 
   ul {
@@ -33,6 +32,8 @@ header {
     }
 
     a {
+      text-decoration: none;
+
       &:hover {
         border-bottom: 1px solid #535353;
       }
