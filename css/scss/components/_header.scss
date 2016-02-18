@@ -9,7 +9,6 @@ header {
 
   nav {
     background: $secondary-color;
-    padding: $def-spacing;
     position: relative;
   }
 
@@ -27,6 +26,12 @@ header {
     li {
       display: inline-block;
       padding-right: 15px;
+    }
+
+    a {
+      &:hover {
+        border-bottom: 1px solid #535353;
+      }
     }
   }
 

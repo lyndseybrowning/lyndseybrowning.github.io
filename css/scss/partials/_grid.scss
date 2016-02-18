@@ -1,7 +1,7 @@
 $grid-max-size: 1000px;
 $grid-cols: 12;
 $grid-col-size: (100 / $grid-cols);
-$grid-pad: 0.5em;
+$grid-pad: 1em;
 
 * {
   box-sizing: border-box;
@@ -18,7 +18,7 @@ html, body {
 
   [class*="grid-"] {
     float: left;
-    padding: $grid-pad;
+    padding: 0 $grid-pad*2 $grid-pad 0;
 
     &:last-of-type {
       padding-right: 0;

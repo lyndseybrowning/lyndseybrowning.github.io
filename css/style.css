@@ -355,15 +355,15 @@ html, body {
 .container {
   max-width: 1000px;
   margin: auto;
-  padding: 0.5em; }
+  padding: 1em; }
   .container [class*="grid-"] {
     float: left;
-    padding: 0.5em; }
+    padding: 0 2em 1em 0; }
     .container [class*="grid-"]:last-of-type {
       padding-right: 0; }
   .container .grid__content {
     border: 1px #f7f7f7 solid;
-    padding: 0.5em; }
+    padding: 1em; }
   .container .grid__content input[type="text"] {
     width: 100%; }
   .container .grid-1 {
@@ -435,6 +435,15 @@ h1 {
 h2 {
   font-size: 1.1em; }
 
+p {
+  margin-bottom: 1em; }
+
+.page-title {
+  padding-top: 2em; }
+
+.active-link {
+  border-bottom: 1px solid #535353; }
+
 header {
   color: #fff;
   background: url("/img/pattern-crossword.png") repeat #f7f7f7; }
@@ -443,7 +452,6 @@ header {
     text-align: center; }
   header nav {
     background: #FFC77F;
-    padding: 1em;
     position: relative; }
   header ul {
     list-style: none; }
@@ -454,6 +462,8 @@ header {
     header ul li {
       display: inline-block;
       padding-right: 15px; }
+    header ul a:hover {
+      border-bottom: 1px solid #535353; }
   header .lb {
     border-width: 3px;
     border-color: #f7f7f7;

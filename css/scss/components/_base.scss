@@ -12,3 +12,15 @@ h1 {
 h2 {
   font-size: 1.1em;
 }
+
+p {
+  margin-bottom: $def-spacing;
+}
+
+.page-title {
+  padding-top: $def-spacing * 2;
+}
+
+.active-link {
+  border-bottom: 1px solid #535353;
+}
