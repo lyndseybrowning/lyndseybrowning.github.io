@@ -1,0 +1,44 @@
+header {
+  color: $primary-font;
+  background: url('/img/pattern-crossword.png') repeat $primary-color;
+
+  .header-main {
+    padding: $def-spacing;
+    text-align: center;
+  }
+
+  nav {
+    background: $secondary-color;
+    padding: $def-spacing;
+    position: relative;
+  }
+
+  ul {
+    list-style: none;
+
+    &:first-of-type {
+      float: left;
+    }
+
+    &:last-of-type {
+      float: right;
+    }
+
+    li {
+      display: inline-block;
+      padding-right: 15px;
+    }
+  }
+
+  .lb {
+      border-width: 3px;
+      border-color: #f7f7f7;
+      border-style: solid;
+      border-radius: $rounded;
+      height: 110px;
+      width: 110px;
+      position: absolute;
+      left: 50%;
+      margin-left: -55px;
+  }
+}

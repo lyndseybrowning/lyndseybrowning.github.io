@@ -1,0 +1,30 @@
+h1,h2,h3,h4,h5,h6,
+p,blockquote,pre,
+dl,dd,ol,ul,
+form,fieldset,legend,
+table,th,td,caption,
+hr{
+    margin:0;
+    padding:0;
+}
+
+img{
+    font-style:italic;
+}
+
+label,
+input[type="submit"],
+textarea,
+button,
+select,
+option{
+    cursor:pointer;
+}
+
+.text-input:active,
+.text-input:focus,
+textarea:active,
+textarea:focus{
+    cursor:text;
+    outline:none;
+}

@@ -1,0 +1,12 @@
+.floatl { float: left }
+.floatr { float: right }
+
+.txt-center { text-align: center }
+.txt-right { text-align: right }
+
+[data-hidden] { display: none; }
+
+.error {
+  background-color: $warning;
+  border: 1px $warning-outline solid;
+}
