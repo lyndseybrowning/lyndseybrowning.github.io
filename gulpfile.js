@@ -9,24 +9,40 @@ var minify = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
+var cp = require('child_process');
 
+var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
 var local = 'local.lyndseyb.net';
 var reload = browserSync.reload;
 var paths = {
   scss: 'css/scss/**/*.scss',
   js: 'js/main.js'
 };
+var messages = {
+  jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
+};
+
+// build Jekyll site
+gulp.task('jekyll-build', function (done) {
+    browserSync.notify(messages.jekyllBuild);
+    return cp.spawn( jekyll , ['build'], {stdio: 'inherit'})
+    .on('close', done);
+});
+
+gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
+    browserSync.reload();
+});
 
 // browser sync
-gulp.task('browser-sync',  function() {
+gulp.task('browser-sync', ['jekyll-build'],  function() {
   browserSync.init({
       server: {
-          baseDir: './'
+          baseDir: '_site/'
       }
   });
 });
 
-gulp.task('bs-reload', reload);
+//gulp.task('bs-reload', reload);
 
 // styles
 gulp.task('style', function() {
@@ -68,8 +84,9 @@ gulp.task('script', function() {
 gulp.task('watch', function() {
    gulp.watch(paths.scss, ['style']);
    gulp.watch(paths.js, ['lint', 'script']);
-   gulp.watch('*.html').on('change', reload);
+   //gulp.watch('*.html').on('change', reload);
+    gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
 
 // default
-gulp.task('default', ['style', 'lint', 'script', 'watch', 'browser-sync']);
+gulp.task('default', ['browser-sync', 'watch']);
