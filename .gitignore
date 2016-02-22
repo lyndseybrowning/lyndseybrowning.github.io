@@ -1,6 +1,5 @@
 _site
 node_modules
 .sass-cache
-_site
-.sass-cache
 .jekyll-metadata
+npm-debug.log
