@@ -442,7 +442,8 @@ h2 {
   font-size: 1.1em; }
 
 p {
-  margin-bottom: 1em; }
+  margin: 1em 0; 
+}
 
 .page-title {
   padding-top: 3em; }
