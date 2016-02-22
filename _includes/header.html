@@ -8,11 +8,11 @@
   <nav class="cf">
     <div class="container">
       <ul>
-        <li><a href="#" class="active-link"> About </a></li>
-        <li><a href="#"> Work </a></li>
-        <li><a href="/"> Posts </a></li>
+        <li><a href="/" {% if page.url == '/' %} class="active-link" {% endif %}> About  </a></li>
+        <li><a href="/work/" {% if page.url == '/work/' %} class="active-link" {% endif %}> Work </a></li>
+        <li><a href="/articles/" {% if page.url == '/articles/' %} class="active-link" {% endif %}> Posts </a></li>
       </ul>
-      <img src="img/lyndsey-browning.png" alt="Lyndsey Browning" class="lb" />
+      <img src="/img/lyndsey-browning.png" alt="Lyndsey Browning" class="lb" />
       <ul class="js-social">
         <li><a href="https://github.com/lyndseybrowning" target="_blank" data-img-ref="github"> GitHub </a></li>
         <li><a href="https://twitter.com/LBrowning86" target="_blank" data-img-ref="twitter"> Twitter </a></li>
