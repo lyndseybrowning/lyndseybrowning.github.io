@@ -13,10 +13,10 @@
   };
 
   const revertLb = () => {
-   lb.setAttribute('src', lbimg);
+    lb.setAttribute('src', lbimg);
   };
 
   socialLinks.addEventListener('mouseover', toggleSocial);
   socialLinks.addEventListener('mouseout', revertLb);
 
-}());
+})();
