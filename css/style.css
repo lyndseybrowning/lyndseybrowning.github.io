@@ -442,11 +442,13 @@ h2 {
   font-size: 1.1em; }
 
 p {
-  margin: 1em 0; 
-}
+  margin: 1em 0; }
 
 .page-title {
   padding-top: 3em; }
+
+.page-content ul {
+  margin-left: 1em; }
 
 .active-link {
   border-bottom: 1px solid #535353; }

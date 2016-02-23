@@ -21,6 +21,10 @@ p {
   padding-top: $def-spacing * 3;
 }
 
+.page-content ul {
+  margin-left: $def-spacing;
+}
+
 .active-link {
   border-bottom: 1px solid #535353;
 }
