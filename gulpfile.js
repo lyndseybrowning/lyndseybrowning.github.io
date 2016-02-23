@@ -83,7 +83,7 @@ gulp.task('script', ['jekyll-build'], function() {
 gulp.task('watch', function() {
    gulp.watch(paths.scss, ['style']);
    gulp.watch(paths.js, ['lint', 'script']);
-  gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
+  gulp.watch(['*.html', '_layouts/*.html', '_posts/*', '_includes/*'], ['jekyll-rebuild']);
 });
 
 // default
