@@ -486,7 +486,7 @@ header {
     left: 50%;
     margin-left: -55px; }
 
-@media handheld, only screen and (max-width: 767px) {
+@media handheld, only screen and (max-width: 467px) {
   header .lb {
     top: 42px; }
   .page-title {
