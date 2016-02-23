@@ -44,7 +44,7 @@ gulp.task('browser-sync', ['jekyll-build'],  function() {
 });
 
 // styles
-gulp.task('style', function() {
+gulp.task('style', ['jekyll-build'], function() {
   return gulp
     .src(paths.scss)
     .pipe(sass().on('error', sass.logError))
@@ -60,7 +60,7 @@ gulp.task('style', function() {
 });
 
 // lint
-gulp.task('lint', function() {
+gulp.task('lint', ['jekyll-build'], function() {
   return gulp
     .src(paths.js)
     .pipe(eslint())
@@ -69,7 +69,7 @@ gulp.task('lint', function() {
 });
 
 // script
-gulp.task('script', function() {
+gulp.task('script', ['jekyll-build'], function() {
   return gulp
     .src(paths.js)
     .pipe(babel())
@@ -82,7 +82,7 @@ gulp.task('script', function() {
 // watch
 gulp.task('watch', function() {
    gulp.watch(paths.scss, ['style']);
-   gulp.watch(paths.js, ['lint', 'script']);   
+   gulp.watch(paths.js, ['lint', 'script']);
   gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
 
