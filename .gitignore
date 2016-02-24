@@ -1,5 +1,6 @@
 _site
-node_modules
+_drafts
 .sass-cache
 .jekyll-metadata
+node_modules
 npm-debug.log
