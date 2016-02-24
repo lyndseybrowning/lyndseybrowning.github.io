@@ -9,6 +9,7 @@ var minify = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
+var gutil = require('gulp-util');
 var cp = require('child_process');
 
 var jekyll = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
@@ -26,8 +27,15 @@ var messages = {
 
 // build Jekyll site
 gulp.task('jekyll-build', function (done) {
+    var buildTasks = ['build'];
+
+    if(drafts) {
+      buildTasks.push('--drafts');
+      gutil.log('Running in DRAFTS mode');
+    }
+
     browserSync.notify(messages.jekyllBuild);
-    return cp.spawn( jekyll , (!drafts) ? ['build'] : ['build', '--drafts'], {stdio: 'inherit'})
+    return cp.spawn(jekyll, buildTasks, {stdio: 'inherit'})
     .on('close', done);
 });
 
