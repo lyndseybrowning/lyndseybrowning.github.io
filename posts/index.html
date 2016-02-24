@@ -1,8 +1,33 @@
 ---
 layout: default
 title: Posts
+meta: "Posts on JavaScript, jQuery and Front End Development"
 ---
 
   <section class="container">
-    <p> I don't have any posts yet, but I'm working on that! Please come back later :) </p>
+    <ul>
+  	  {% for post in paginator.posts %}
+  	    <li>
+  					<a href="{{ post.url }}">
+  						<h2>
+  							{{ post.title }}
+  						</h2>
+  					</a>
+
+  					<time datetime="{{ post.date | date: "%Y-%m-%d" }}">
+  						{{ post.date | date: "%d %B, %Y" }}
+  					</time>
+  	    </li>
+  	  {% endfor %}
+  	</ul>
+
+    <div class="pagination section">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}" class="previous box-link">&laquo; Newer posts</a>
+      {% endif %}
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}" class="next box-link">Older posts &raquo;</a>
+      {% endif %}
+    </div>
+
   </section>
