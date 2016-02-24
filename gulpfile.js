@@ -9,9 +9,11 @@ var minify = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
+var gutil = require('gulp-util');
 var cp = require('child_process');
 
-var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
+var jekyll = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
+var drafts = true;
 var reload = browserSync.reload;
 
 var paths = {
@@ -25,8 +27,15 @@ var messages = {
 
 // build Jekyll site
 gulp.task('jekyll-build', function (done) {
+    var buildTasks = ['build'];
+
+    if(drafts) {
+      buildTasks.push('--drafts');
+      gutil.log('Running in DRAFTS mode');
+    }
+
     browserSync.notify(messages.jekyllBuild);
-    return cp.spawn( jekyll , ['build'], {stdio: 'inherit'})
+    return cp.spawn(jekyll, buildTasks, {stdio: 'inherit'})
     .on('close', done);
 });
 
@@ -83,7 +92,7 @@ gulp.task('script', ['jekyll-build'], function() {
 gulp.task('watch', function() {
    gulp.watch(paths.scss, ['style']);
    gulp.watch(paths.js, ['lint', 'script']);
-  gulp.watch(['**/*.html', '!node_modules/**/*.html', '!_site/**/*.html'], ['jekyll-rebuild']);
+   gulp.watch(['**/*.html', '!node_modules/**/*.html', '!_site/**/*.html'], ['jekyll-rebuild']);
 });
 
 // default
