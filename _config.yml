@@ -13,5 +13,5 @@ markdown: kramdown
 permalink: /posts/:title # lowercase separated by hyphens
 gems: [jekyll-paginate]
 paginate: 3
-paginate_path: "page:num"
+paginate_path: "/posts/page:num"
 exclude: ["node_modules", "gulpfile.js", "package.json"]
