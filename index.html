@@ -1,36 +1,33 @@
 ---
 layout: default
-title: About Me
+title: Posts
+description: Posts about JavaScript, jQuery and Front End Development.
 ---
 
   <section class="container">
-    <div class="grid-8">
-        <p> My name is Lyndsey and I'm a Software Developer. I've worked as a developer for around 5 years, from Classic ASP, to PHP and most recently C#. </p>
+    <ul>
+  	  {% for post in paginator.posts %}
+  	    <li>
+  					<a href="{{ post.url }}">
+  						<h2>
+  							{{ post.title }}
+  						</h2>
+  					</a>
 
-        <p> Over the last few years my interests have changed from loving the full-stack to wanting to solely focus on the front-end, in particular JavaScript. I've had a peek at where the industry is going and I'm loving it! </p>
+  					<time datetime="{{ post.date | date: "%Y-%m-%d" }}">
+  						{{ post.date | date: "%d %B, %Y" }}
+  					</time>
+  	    </li>
+  	  {% endfor %}
+  	</ul>
 
-        <p> Most of my free time is spent learning as much JavaScript as I can; I enjoy coming up with ideas for projects in order to enhance my skillset and become familiarised with the subject, whether it's a new library or just the language in general. </p>
-
-        <p> When I'm not learning, I enjoy playing mobile word games like Ruzzle and Scramble with Friends. </p>
-
-        <p> I've been a fan of word games for over 14 years and I'm quite the competitive player, <a href="https://www.youtube.com/watch?v=PjC3Vbgva8k" target="_blank"> see me in action! </a></p>
+    <div class="pagination section">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}" class="previous box-link">&laquo; Newer posts</a>
+      {% endif %}
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}" class="next box-link">Older posts &raquo;</a>
+      {% endif %}
     </div>
-    <div class="grid-4 txt-center img-hover">
-      <b> Try one of my games! </b>
 
-      <div class="container">
-        Wordscrambler is pure JavaScript, built as an exericse to learn the basics of the language (and play!).
-      </div>
-      <div class="txt-center container">
-        <a href="http://word-scrambler.co.uk" target="_blank"><img src="img/word-scrambler.svg"></a>
-      </div>
-      <div class="container">
-        The majority of the Blocks codebase is vanilla JavaScript, with some jQuery added in for AJAX calls. I use a small bit of PHP to submit scores and display the leaderboard.
-      </div>
-      <div class="txt-center container">
-        <a href="http://blocks.lyndseyb.co.uk" target="_blank"><img src="img/blocks.png"></a>
-      </div>
-
-      <span> Source code for both games can be found on my <a href="https://github.com/lyndseybrowning/" target="_blank"> GitHub </a></span>
-    </div>
   </section>
