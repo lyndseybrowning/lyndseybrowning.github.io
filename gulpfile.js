@@ -13,7 +13,7 @@ var gutil = require('gulp-util');
 var cp = require('child_process');
 
 var jekyll = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
-var drafts = true;
+var drafts = false;
 var reload = browserSync.reload;
 
 var paths = {
