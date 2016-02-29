@@ -403,12 +403,25 @@ html, body {
 a {
   color: #212121; }
   a:hover {
-    color: #FFC77F; }
+    color: #535353; }
 
 .img-hover img {
   border: 1px solid transparent; }
   .img-hover img:hover {
     border-color: #e3e2de; }
+
+.button {
+  display: inline-block;
+  padding: 0.5em;
+  margin: 1em 0 1.5em 0;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  color: #000;
+  text-transform: uppercase;
+  text-decoration: none; }
+  .button:hover {
+    border-color: #FFC77F;
+    color: #000; }
 
 .floatl {
   float: left; }
@@ -491,3 +504,15 @@ header {
     top: 42px; }
   .page-title {
     padding-top: 5em; } }
+
+.posts-list {
+  list-style: none; }
+
+.post__link {
+  text-decoration: none;
+  font-size: 1.3em; }
+
+.post__info {
+  font-style: italic;
+  margin: 0.5em 0;
+  font-size: 0.9em; }

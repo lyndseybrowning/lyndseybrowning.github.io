@@ -4,18 +4,26 @@ meta: Posts about JavaScript, jQuery and Front End Development.
 ---
 
   <section class="container">
-    <ul>
+    <ul class="posts-list page-title">
   	  {% for post in paginator.posts %}
-  	    <li>
-  					<a href="{{ post.url }}">
+  	    <li class="post">
+  					<a href="{{ post.url }}" class="post__link">
   						<h2>
   							{{ post.title }}
   						</h2>
   					</a>
 
-  					<time datetime="{{ post.date | date: "%Y-%m-%d" }}">
-  						{{ post.date | date: "%d %B, %Y" }}
-  					</time>
+            <div class="post__info">
+              <span> Posted on </span>
+    					<time datetime="{{ post.date | date: "%Y-%m-%d" }}">
+    						{{ post.date | date: "%d %B, %Y" }}
+    					</time>
+              <span> by <a href="https://twitter.com/LBrowning86" target="_blank"> Lyndsey Browning </a> </span>
+            </div>
+
+            <p> {{ post.content | truncatewords: 50 }} </p>
+
+            <a href="{{ post.url }}" title="{{ post.title }}" class="button"> Read More... </a>
   	    </li>
   	  {% endfor %}
   	</ul>

@@ -5,9 +5,11 @@
   <body>
     {% include header.html %}
 
+    {% if page.title %}
     <section class="container page-title">
       <h3> {{page.title}} </h3>
     </section>
+    {% endif %}
 
     {{ content }}
 
