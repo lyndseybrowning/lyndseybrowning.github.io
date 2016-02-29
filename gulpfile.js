@@ -53,7 +53,7 @@ gulp.task('browser-sync', ['jekyll-build'],  function() {
 });
 
 // styles
-gulp.task('style', ['jekyll-build'], function() {
+gulp.task('style', function() {
   return gulp
     .src(paths.scss)
     .pipe(sass().on('error', sass.logError))
@@ -69,7 +69,7 @@ gulp.task('style', ['jekyll-build'], function() {
 });
 
 // lint
-gulp.task('lint', ['jekyll-build'], function() {
+gulp.task('lint', function() {
   return gulp
     .src(paths.js)
     .pipe(eslint())
@@ -78,7 +78,7 @@ gulp.task('lint', ['jekyll-build'], function() {
 });
 
 // script
-gulp.task('script', ['jekyll-build'], function() {
+gulp.task('script', function() {
   return gulp
     .src(paths.js)
     .pipe(babel())
@@ -90,8 +90,8 @@ gulp.task('script', ['jekyll-build'], function() {
 
 // watch
 gulp.task('watch', function() {
-   gulp.watch(paths.scss, ['style']);
-   gulp.watch(paths.js, ['lint', 'script']);
+   gulp.watch(paths.scss, ['style', 'jekyll-rebuild']);
+   gulp.watch(paths.js, ['lint', 'script', 'jekyll-rebuild']);
    gulp.watch(['**/*.html', '!node_modules/**/*.html', '!_site/**/*.html'], ['jekyll-rebuild']);
 });
 
