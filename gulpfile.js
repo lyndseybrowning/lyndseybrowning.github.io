@@ -90,8 +90,8 @@ gulp.task('script', function() {
 
 // watch
 gulp.task('watch', function() {
-   gulp.watch(paths.scss, ['style', 'jekyll-rebuild']);
-   gulp.watch(paths.js, ['lint', 'script', 'jekyll-rebuild']);
+   gulp.watch(paths.scss, ['style', 'jekyll-build']);
+   gulp.watch(paths.js, ['lint', 'script', 'jekyll-build']);
    gulp.watch(['**/*.html', '!node_modules/**/*.html', '!_site/**/*.html'], ['jekyll-rebuild']);
 });
 
