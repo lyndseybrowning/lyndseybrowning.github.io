@@ -44,7 +44,7 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
 });
 
 // browser sync
-gulp.task('browser-sync', ['jekyll-build'],  function() {
+gulp.task('browser-sync', ['jekyll-build'], function() {
   browserSync.init({
       server: {
           baseDir: '_site/'
@@ -96,4 +96,4 @@ gulp.task('watch', function() {
 });
 
 // default
-gulp.task('default', ['browser-sync', 'watch']);
+gulp.task('default', ['script', 'browser-sync', 'watch']);

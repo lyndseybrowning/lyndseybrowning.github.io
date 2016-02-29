@@ -474,13 +474,9 @@ header {
       color: #212121; }
   header nav {
     background: #FFC77F;
-    position: relative; }
+    text-align: center; }
   header ul {
     list-style: none; }
-    header ul:first-of-type {
-      float: left; }
-    header ul:last-of-type {
-      float: right; }
     header ul li {
       display: inline-block;
       padding-right: 15px; }
@@ -489,21 +485,13 @@ header {
       header ul a:hover {
         border-bottom: 1px solid #535353; }
   header .lb {
-    border-width: 3px;
-    border-color: #f7f7f7;
+    border-width: 1px;
+    border-color: #212121;
     border-style: solid;
     border-radius: 50%;
-    height: 110px;
-    width: 110px;
-    position: absolute;
-    left: 50%;
-    margin-left: -55px; }
-
-@media handheld, only screen and (max-width: 467px) {
-  header .lb {
-    top: 42px; }
-  .page-title {
-    padding-top: 5em; } }
+    height: 100px;
+    width: 100px;
+    margin: 1em 0 0 0; }
 
 .posts-list {
   list-style: none; }

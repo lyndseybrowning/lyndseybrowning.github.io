@@ -1,6 +1,5 @@
 header {
   color: $primary-font;
-  //background: url('/img/pattern-crossword.png') repeat $primary-color;
 
   a {
     text-decoration: none;
@@ -12,19 +11,12 @@ header {
 
   nav {
     background: $secondary-color;
-    position: relative;
+    text-align: center;
+
   }
 
   ul {
     list-style: none;
-
-    &:first-of-type {
-      float: left;
-    }
-
-    &:last-of-type {
-      float: right;
-    }
 
     li {
       display: inline-block;
@@ -41,25 +33,16 @@ header {
   }
 
   .lb {
-      border-width: 3px;
-      border-color: #f7f7f7;
+      border-width: 1px;
+      border-color: $links-color;
       border-style: solid;
       border-radius: $rounded;
-      height: 110px;
-      width: 110px;
-      position: absolute;
-      left: 50%;
-      margin-left: -55px;
+      height: 100px;
+      width: 100px;
+      margin: 1em 0 0 0;
   }
 }
 
 @media handheld, only screen and (max-width: 467px) {
 
-    header .lb {
-      top: 42px;
-    }
-
-    .page-title {
-      padding-top: 5em;
-    }  
 }
