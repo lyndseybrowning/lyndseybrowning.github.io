@@ -11,19 +11,12 @@ header {
 
   nav {
     background: $secondary-color;
-    position: relative;
+    text-align: center;
+
   }
 
   ul {
     list-style: none;
-
-    &:first-of-type {
-      float: left;
-    }
-
-    &:last-of-type {
-      float: right;
-    }
 
     li {
       display: inline-block;

@@ -461,13 +461,9 @@ header {
       color: #212121; }
   header nav {
     background: #FFC77F;
-    position: relative; }
+    text-align: center; }
   header ul {
     list-style: none; }
-    header ul:first-of-type {
-      float: left; }
-    header ul:last-of-type {
-      float: right; }
     header ul li {
       display: inline-block;
       padding-right: 15px; }
