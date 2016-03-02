@@ -418,7 +418,8 @@ a {
   border-radius: 8px;
   color: #000;
   text-transform: uppercase;
-  text-decoration: none; }
+  text-decoration: none;
+  font-size: 0.8em; }
   .button:hover {
     border-color: #FFC77F;
     color: #000; }
@@ -497,8 +498,12 @@ header {
   list-style: none; }
 
 .post__link {
+  display: block;
   text-decoration: none;
-  font-size: 1.3em; }
+  font-size: 1.2em;
+  padding: 1em 0; }
+  .post__link h2 {
+    text-transform: uppercase; }
 
 .post__info {
   font-style: italic;

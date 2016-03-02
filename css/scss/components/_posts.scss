@@ -3,8 +3,14 @@
 }
 
 .post__link {
+  display: block;
   text-decoration: none;
-  font-size: 1.3em;
+  font-size: 1.2em;
+  padding: 1em 0;
+
+  h2 {
+    text-transform: uppercase;
+  }
 }
 
 .post__info {
