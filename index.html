@@ -4,6 +4,10 @@ meta: Posts about JavaScript, jQuery and Front End Development.
 ---
 
   <section class="container">
+
+    {% if paginator.posts == null %}
+      <p> No posts yet, but I'm working on it! </p>
+    {% else %}
     <ul class="posts-list page-title">
   	  {% for post in paginator.posts %}
   	    <li class="post">
@@ -36,5 +40,6 @@ meta: Posts about JavaScript, jQuery and Front End Development.
         <a href="{{ paginator.next_page_path }}" class="next box-link">Older posts &raquo;</a>
       {% endif %}
     </div>
+    {% endif %}
 
   </section>
