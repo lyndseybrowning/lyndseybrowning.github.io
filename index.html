@@ -4,7 +4,6 @@ meta: Posts about JavaScript, jQuery and Front End Development.
 ---
 
   <section class="container">
-
     {% if paginator.posts == null %}
       <p> No posts yet, but I'm working on it! </p>
     {% else %}
@@ -12,7 +11,7 @@ meta: Posts about JavaScript, jQuery and Front End Development.
   	  {% for post in paginator.posts %}
   	    <li class="post">
   					<a href="{{ post.url }}" class="post__link">
-  						<h2 class="uppercase">
+  						<h2>
   							{{ post.title }}
   						</h2>
   					</a>
