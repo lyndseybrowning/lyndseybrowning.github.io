@@ -436,6 +436,9 @@ a {
 .txt-right {
   text-align: right; }
 
+.uppercase {
+  text-transform: uppercase; }
+
 [data-hidden] {
   display: none; }
 
@@ -502,8 +505,6 @@ header {
   text-decoration: none;
   font-size: 1.2em;
   padding: 1em 0; }
-  .post__link h2 {
-    text-transform: uppercase; }
 
 .post__info {
   font-style: italic;
