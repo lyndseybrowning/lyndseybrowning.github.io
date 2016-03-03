@@ -3,42 +3,41 @@ layout: default
 meta: Posts about JavaScript, jQuery and Front End Development.
 ---
 
-  <section class="container">
-    {% if paginator.posts == null %}
-      <p> No posts yet, but I'm working on it! </p>
-    {% else %}
-    <ul class="posts-list page-title">
-  	  {% for post in paginator.posts %}
-  	    <li class="post">
-  					<a href="{{ post.url }}" class="post__link">
-  						<h2>
-  							{{ post.title }}
-  						</h2>
-  					</a>
 
-            <div class="post__info">
-              <span> Posted on </span>
-    					<time datetime="{{ post.date | date: "%Y-%m-%d" }}">
-    						{{ post.date | date: "%d %B, %Y" }}
-    					</time>
-              <span> by <a href="https://twitter.com/LBrowning86" target="_blank"> Lyndsey Browning </a> </span>
-            </div>
+{% if paginator.posts == null %}
+  <p> No posts yet, but I'm working on it! </p>
+{% else %}
 
-            <p> {{ post.content | truncatewords: 50 }} </p>
+<ul class="posts-list">
+  {% for post in paginator.posts %}
+    <li class="post">
+				<a href="{{ post.url }}" class="post__link">
+					<h2>
+						{{ post.title }}
+					</h2>
+				</a>
 
-            <a href="{{ post.url }}" title="{{ post.title }}" class="button"> Read More... </a>
-  	    </li>
-  	  {% endfor %}
-  	</ul>
+        <div class="post__info">
+          <span> Posted on </span>
+					<time datetime="{{ post.date | date: "%Y-%m-%d" }}">
+						{{ post.date | date: "%d %B, %Y" }}
+					</time>
+          <span> by <a href="https://twitter.com/LBrowning86" target="_blank"> Lyndsey Browning </a> </span>
+        </div>
 
-    <div class="pagination section">
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="previous box-link">&laquo; Newer posts</a>
-      {% endif %}
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path }}" class="next box-link">Older posts &raquo;</a>
-      {% endif %}
-    </div>
-    {% endif %}
+        <p> {{ post.content | truncatewords: 50 }} </p>
 
-  </section>
+        <a href="{{ post.url }}" title="{{ post.title }}" class="button"> Read More... </a>
+    </li>
+  {% endfor %}
+</ul>
+
+<div class="pagination section">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}" class="previous box-link">&laquo; Newer posts</a>
+  {% endif %}
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next box-link">Older posts &raquo;</a>
+  {% endif %}
+</div>
+{% endif %}

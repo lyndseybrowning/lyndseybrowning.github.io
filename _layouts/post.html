@@ -3,10 +3,12 @@ layout: default
 title: page.title
 ---
 
-<section class="container">
-  <article>
-    <div class="post-content">
-      {{ content }}
-    </div>
-  </article>
-</section>
+<article class="post">
+	<h1 class="page-title">{{ page.title }}</h1>
+	<time class="post__info" datetime="{{ page.date | date: "%Y-%m-%d" }}">
+		{{ page.date | date: "%d %B, %Y" }}
+	</time>
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>
