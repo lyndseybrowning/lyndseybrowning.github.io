@@ -10,6 +10,7 @@ github_username:  lyndseybrowning
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 permalink: /posts/:title
 gems: [jekyll-paginate]
 paginate: 3
