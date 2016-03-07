@@ -46,4 +46,4 @@ The plugin has two default options that can be overridden as necessary:
 }
 {% endhighlight %}
 
-You can find a demo of this plugin [here]([http://demos.lyndseyb.co.uk/tablescroll/) and the full source code can be found on my [GitHub](https://github.com/lyndseybrowning/js-table-scroller).
+You can find a demo of this plugin [here](http://demos.lyndseyb.co.uk/tablescroll/) and the full source code can be found on my [GitHub](https://github.com/lyndseybrowning/js-table-scroller).
