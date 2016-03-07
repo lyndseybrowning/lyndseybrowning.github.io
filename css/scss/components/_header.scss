@@ -11,8 +11,13 @@ header {
 
   nav {
     background: $secondary-color;
-    text-align: center;
+    text-align: center;    
+  }
 
+  .nav--fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
   }
 
   ul {
