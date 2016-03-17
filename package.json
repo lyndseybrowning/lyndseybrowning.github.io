@@ -4,6 +4,10 @@
   "description": "Lyndsey Browning's personal website",
   "author": "Lyndsey Browning",
   "license": "MIT",
+  "scripts": {
+    "drafts": "jekyll serve --watch --drafts",
+    "serve": "jekyll serve --watch"
+  },
   "devDependencies": {
     "babel-preset-es2015": "^6.5.0",
     "browser-sync": "2.9.11",
