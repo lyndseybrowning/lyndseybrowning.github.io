@@ -1,10 +1,11 @@
 ---
 layout: post
 title: "ES6 Default Parameters"
+date: March 23, 2016
 pageClass: post
 ---
 
-In JavaScript, a parameter that is not passed to a function becomes ``` undefined ```.
+In JavaScript, a parameter that is not passed to a function is undefined. Let's look at a simple example to illustrate this:
 
 {% highlight javascript %}
 function adder(a, b) {
