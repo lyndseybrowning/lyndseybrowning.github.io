@@ -13,24 +13,23 @@ I began with a simple workflow, creating my first two posts inside the ```_draft
 
 I realised right away that there was a problem with my workflow. Because my drafts folder was being ignored by git, any draft posts were not being tracked for changes. I could only work on my drafts on the current device and if something happened to the device, my work would be lost.
 
-I did a little bit of research and came across an [article](https://24ways.org/2013/keeping-parts-of-your-codebase-private-on-github/) by Harry Roberts ([CSS Wizardry](http://csswizardry.com/)) which explains the same problem and how to resolve it using multiple remotes.
+I did a little bit of research and came across an [article](https://24ways.org/2013/keeping-parts-of-your-codebase-private-on-github/) by Harry Roberts ([CSS Wizardry](http://csswizardry.com/)), which explains the same problem and how to resolve it.
 
 I've since updated my workflow so that I can keep my drafts away from my live repo but push them to a separate private repo where they can be tracked for changes.
 
 I have:
 
 * Added a new branch called drafts: ```git checkout -b drafts```
-* Added a private remote to the new branch ```git remote add private [https://github.com/user/repo.git]``` which is separate to my master remote
+* Added a private remote to the new branch ```git remote add private [url]``` which is separate to my master remote
 * Updated the ```.gitignore``` file in the new branch by removing ```_drafts``` so that the folder is trackable.
 
-I now work directly in the ```drafts``` branch, moving any completed drafts into the ```_posts``` folder within the same branch when they are ready to be published. All commits in this branch are pushed to my private repository.
+I now work directly in the ```drafts``` branch, moving any completed drafts into the ```_posts``` folder within the same branch when they are ready to be published. I can git commit and push whenever I want within this branch and all commits will go to my private repository. This way, I am ensuring that all changes within this branch are added to source control.
 
-When I am ready to make my draft post live, I move back into the master branch and checkout the ```_posts``` folder within the drafts branch. This will merge any new files from the drafts branch into my master copy.
+When I am ready to make my draft post live, I move back into the master branch and use the following command to move any completed posts into the master copy:
 
 ```
 git checkout master
 git checkout drafts _posts/
-git add .
 git commit -m "New Post"
 git push
 ```

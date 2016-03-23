@@ -25,7 +25,7 @@ meta: Posts about JavaScript, jQuery and Front End Development.
           <span> by <a href="https://twitter.com/LBrowning86" target="_blank"> Lyndsey Browning </a> </span>
         </div>
 
-        <p> {{ post.content | truncatewords: 50 }} </p>
+        <p> {{ post.content | strip_html | truncatewords: 50 }} </p>
 
         <a href="{{ post.url }}" title="{{ post.title }}" class="button"> Read More... </a>
     </li>
