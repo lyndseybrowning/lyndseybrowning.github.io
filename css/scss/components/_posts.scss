@@ -18,3 +18,12 @@
 .post-content ul {
   margin: 0 1.5em;
 }
+
+.post-content a {
+  color: $body-links;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

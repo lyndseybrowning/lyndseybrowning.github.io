@@ -775,3 +775,9 @@ header {
 
 .post-content ul {
   margin: 0 1.5em; }
+
+.post-content a {
+  color: #b77d33;
+  text-decoration: none; }
+  .post-content a:hover {
+    text-decoration: underline; }
