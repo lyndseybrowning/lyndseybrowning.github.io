@@ -10,6 +10,8 @@ tags:
 - Boggle
 ---
 
+This post describes how I built my own Boggle Solver, using JavaScript.
+
 I've been a big [Boggle](https://en.wikipedia.org/wiki/Boggle) fan for many years, having played numerous variations of the game online since the 90's. You can see me play a version of the game - Wordament, [here](https://www.youtube.com/watch?v=PjC3Vbgva8k).
 
 Whilst always striving to be a better player, I'm also an avid programmer with a big interest in JavaScript. So I thought, why not challenge myself to create a boggle solver which would not only be a challenge programming-wise but a useful learning resource. My advice to those looking to improve in the game is to always look at the full word list at the end of a game. Keep doing that and the words will eventually sink in.
