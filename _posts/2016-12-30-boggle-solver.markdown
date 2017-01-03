@@ -3,6 +3,7 @@ layout: post
 title: "Boggle Solver"
 date: December 30, 2016
 pageClass: post
+description: Boggle Solver
 ---
 
 I've been a big [Boggle](https://en.wikipedia.org/wiki/Boggle) fan for many years, having played numerous variations of the game online since the 90's. You can see me play a version of the game - Wordament, [here](https://www.youtube.com/watch?v=PjC3Vbgva8k).
