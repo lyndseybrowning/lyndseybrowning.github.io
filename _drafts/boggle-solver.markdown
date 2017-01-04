@@ -230,7 +230,7 @@ For each letter in the grid, I called the solveBoard method. Each letter and it'
 
 What took me a while to get right was the ```usedPositions``` variable. I needed to ensure that each time I recursed over a letter, it had to be marked as used so that it couldn't be visited again. I wrote a simple method that would pass in all used positions and check the current position against them:
 
-```
+```javascript
 /// checks if two arrays are exactly the same
 // e.g. [1,1] === [1,1], [1,0] !== [1,1]
 arrayMatch(first, second) {
