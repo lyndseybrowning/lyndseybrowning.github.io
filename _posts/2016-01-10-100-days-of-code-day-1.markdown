@@ -13,15 +13,14 @@ I will blog about my progress at the end of each day.
 
 ## Why?
 
-<br>
 
 - I want to improve my JavaScript skills.
 - I want to motivate myself to **complete** side-projects.
 - Blogging about my day will help reinforce what I've learned.
 
+
 ## Day 1 - 9th January, 2017
 
-<br>
 
 I started work on a Dictionary API (Node and Express) to be used in conjunction with my [Boggle Solver](http://lyndseyb.co.uk/boggle-solver/).
 
