@@ -34,27 +34,29 @@ I completed the initial set up of the server and set up [Babel](https://babeljs.
 I learned a little bit about blocking and non-blocking when it comes to file reading. I am using Node's ```fs``` module to read a file asynchronously using the ```readFile()``` method. I was erroneously trying to return the number of lines in the file before the ```readFile()``` method had completed. I wanted the Dictionary to be loaded in before I started the Node server. I resolved the issue using callbacks. Here is an example:
 
 **Module: dictionary.js**
+
 ```javascript
 const init = (callback) => {
-	fs.readFile(dictionary, 'utf8', (err, dict) => {
-	  if(err) {
-		throw err;
-	  }
+  fs.readFile(dictionary, 'utf8', (err, dict) => {
+    if(err) {
+    throw err;
+    }
 
-	const wordCount = dict.split('\n');
-	if(callback && typeof callback === 'function') {
-	return callback(null, {
-	  wordCount: wordCount.length
-	});
-	}
-	  return null;
-	});
+  const wordCount = dict.split('\n');
+  if(callback && typeof callback === 'function') {
+  return callback(null, {
+    wordCount: wordCount.length
+  });
+  }
+    return null;
+  });
 
-	// WRONG! I was originally returning here!
+  // WRONG! I was originally returning here!
 }
 ```
 
 **Entry Point: index.js**
+
 ```javascript
 dictionary.init((err, result) => {
   if(err) {
