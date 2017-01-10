@@ -11,14 +11,14 @@ I've committed myself to coding for at least one hour every day.
 
 I will blog about my progress at the end of each day.
 
-# Why?
+## Why?
 
 
 - I want to improve my JavaScript skills.
 - I want to motivate myself to **complete** side-projects.
 - Blogging about my day will help reinforce what I've learned.
 
-# Day 1 - 9th January, 2017
+## Day 1 - 9th January, 2017
 
 
 I started work on a Dictionary API (Node and Express) to be used in conjunction with my [Boggle Solver](http://lyndseyb.co.uk/boggle-solver/).
