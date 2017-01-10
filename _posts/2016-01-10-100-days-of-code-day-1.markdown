@@ -23,6 +23,7 @@ I will blog about my progress at the end of each day.
 
 I started work on a Dictionary API (Node and Express) to be used in conjunction with my [Boggle Solver](http://lyndseyb.co.uk/boggle-solver/).
 
+
 **API Requirements:**
 
 - Check word validity
@@ -74,6 +75,6 @@ dictionary.init((err, result) => {
 
 *See the Link to Project at the bottom of the page to view the full code*
 
-**Thoughts for tomorrow:** I want to continue expanding the API by creating some routes.
+**Thoughts for Day 2:** I want to continue expanding the API by creating some routes.
 
-Link to Project: [Dictionary API](https://github.com/lyndseybrowning/dictionary-api)
+**Link to Project:** [Dictionary API](https://github.com/lyndseybrowning/dictionary-api)
