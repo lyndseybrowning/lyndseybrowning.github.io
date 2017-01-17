@@ -9,7 +9,7 @@ Current Project: [Word API](https://github.com/lyndseybrowning/word-api).
 
 I renamed the project today because I think **word-api** better reflects what the API does. It doesn't store word definitions like a typical dictionary would do; it simply returns filtered lists and permutations.
 
-I performance tested returning prefix-ed lists as ***Arrays*** vs ***Tries*** today. The Trie was typically more than **4 times faster** when returning more than 15,000 words. For smaller lists, the speed of the Trie was sometimes up to **100 times faster** Unbelievable!
+I performance tested returning prefix-ed lists as ***Arrays*** vs ***Tries*** today. The Trie was typically more than **4 times faster** when returning more than 15,000 words. For smaller lists, the speed of the Trie was sometimes up to **100 times faster**. Unbelievable!
 
 The ***Array*** approach takes the full dictionary as an array (approximately 272,000 words) and filters words using the ```.substring()``` method. Here is an example:
 
