@@ -14,7 +14,7 @@ I performance tested returning prefix-ed lists as ***Arrays*** vs ***Tries*** to
 The ***Array*** approach takes the full dictionary as an array (approximately 272,000 words) and filters words using the ```.substring()``` method. Here is an example:
 
 ```javascript
-let wordList = _dictionary;
+let wordList = _dictionary; // array containing 272,000 words
 
 function filterByPrefix(prefix, word) {
   const prefixLen = prefix.length;
@@ -27,7 +27,27 @@ function filterByPrefix(prefix, word) {
 wordList = wordList.filter(filterByPrefix.bind(null, prefix));
 ```
 
-The Trie approach takes the full dictionary as a Trie and filters words using depth-first recursion. Here is the method I used:
+The Trie approach takes the full dictionary as a Trie and filters words using depth-first recursion. Here is an example of what a Trie looks like:
+
+```javascript
+// this trie contains the words: CAR and CARS. The '$' symbol signifies the end of a word.
+{
+  C: {
+    A: {
+      R: {
+        $: 1,
+        S: {
+          $: 1
+        }
+      }
+    }
+  }
+}
+```
+
+For more information on Tries, see this link: [https://en.wikipedia.org/wiki/Trie](https://en.wikipedia.org/wiki/Trie). 
+
+Here is the method I used to recurse the Trie:
 
 ```javascript
 filterByPrefix(prefix, trie = _trie) {
@@ -39,6 +59,9 @@ filterByPrefix(prefix, trie = _trie) {
   }
 
   // we know that the prefix exists, so let's get the starting node
+  // node in this instance is every key underneath the last letter in the prefix.
+  // If we'd passed in C as the prefix, the resulting node would be every object nested inside C, 
+  // so using the example Trie above, the next node would be the letter A.
   const node = getPrefix(prefix);
 
   // recurse through each node in the Trie, please see the function definition below
@@ -63,7 +86,7 @@ function recursePrefix(prefix, node, wordList = []) {
 }
 ```
 
-For more information about Tries, please click [here](http://lyndseyb.co.uk/posts/boggle-solver) to read a previous post regarding my own Boggle Solver which uses a Trie to store the dictionary.
+For the full Trie module used in this API, please see this link: [https://github.com/lyndseybrowning/word-api/blob/master/src/trie.js](https://github.com/lyndseybrowning/word-api/blob/master/src/trie.js)
 
 I ran a few tests, filtering Prefixes by Array vs Trie and here are some results:
 
