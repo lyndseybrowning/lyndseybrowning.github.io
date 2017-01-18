@@ -1,0 +1,143 @@
+---
+layout: post
+title: "#100DaysofCode - Day 9 & 10"
+date: January 18, 2017
+pageClass: post
+---
+
+Current Project: [wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
+
+I changed the repository name (again!). I bought a domain to house the project once it's completed so renamed to match the domain name, for consistency.
+
+I'm in the process of building a word API using NodeJs and Express that will allow users to retrieve word lists based on parameters such as length and suffix, solve anagrams, generate string permutations and solve boggle-style matrices. 
+
+The API currrently holds words found in the [SOWPODS](https://en.m.wikipedia.org/wiki/Collins_Scrabble_Words) dictionary, approximately 270,000 words.
+
+Progress so far has been good. I've created two end points, one that checks word validity and another that filters words based on length, prefix and suffix. 
+
+Please refer to my previous #100DaysOfCode posts for more information about my
+progress so far, with code examples.
+
+On day 8, I [posted](http://lyndseyb.co.uk/posts/100-days-of-code-day-8) about performance testing Trie prefix searching vs Array prefix searching. The [Trie](https://en.m.wikipedia.org/wiki/Trie) method was much more performant.
+
+On day 9, I tested the same but for suffix searching. Please see an example of both methods below:
+
+**Array Search**
+
+```javascript
+function filterBySuffix(suffix, word) {
+  const wordLen = word.length;
+  const wordSuffix = word.substring(wordLen - suffix.length, wordLen);
+
+  return wordSuffix === suffix.toUpperCase();
+}
+
+let wordList = _dictionary;
+if(req.query.suffix) {
+  wordList =wordList.filter(filterBySuffix.bind(null, suffix));
+}
+```
+
+**Trie Search**
+
+```javascript
+function recurseSuffix(suffix, node, wordList = [], word = '') {
+  for(const n in node) {
+    if(n === '$' && word.slice(-suffix.length) === suffix) {
+      wordList.push(word.toUpperCase());
+    } else {
+       recurseSuffix(suffix, node[n], wordList, word + n);
+    }
+  }
+
+  return wordList;
+}
+```
+
+The Array search uses the [filter](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) method to filter out words that don't contain the passed in suffix.
+
+The Trie search on the other hand has to recurse every node to its end in order to determine if the current word has the passed in prefix. 
+
+Searching the Array in this instance was faster than recursing the Trie. 
+
+In order to increase performance further, I replaced ES5's '''Array.filter()''' method with a standard '''for''' loop. This saw speeds increase even further:
+
+```javascript 
+filterBySuffix(suffix, dictionary = _dictionary) {
+  const wordList = [];
+  const suffixLen = suffix.length;
+    
+  suffix = suffix.toUpperCase();
+
+  for (let i = 0, len = dictionary.length; i < len; i++) {
+    const word = dictionary[i];
+    const wordLen = word.length;
+    const wordSuffix = word.substring(wordLen - suffixLen, wordLen);
+
+    if(wordSuffix !== suffix) {
+      continue;    	
+    }
+    wordList.push(word);    
+  }
+  return wordList;
+}
+```
+
+Whilst the above method works and performs quite well, I'm still interested in seeing if the Trie can perform at a similar level for suffix searches. So my aim is to try a different approach and run some further tests.
+
+On to day 10. Today wasn't as code heavy. I realised that I'd been working through this project without any testing or linting in place. Better to start  now than later even if now is too late! I did some reading around esLint and found these resources to be extremely helpful:
+
+- [http://eslint.org](http://eslint.org)
+- [https://github.com/airbnb/javascript](https://github.com/airbnb/javascript)
+
+I used these guides to start creating my own rules, customised to my style of development. Here's what I have so far:
+
+```javascript
+module.exports = {
+  "rules": {
+    "quotes": [2, "single"],
+    "no-var": 2,
+    "prefer-const": 2,
+    "no-empty-function": 2,
+    // prefer === vs ==
+    "eqeqeq": 2,
+    // no const reassignment
+    "no-const-assign": 2,
+    // use variables within the scope they are defined
+    "block-scoped-var": 2,
+    // disallow else after a return statement in if block
+    "no-else-return": 2,
+    // no unnecessary bind() methods
+    "no-extra-bind": 2,
+    // no switch fall-through
+    "no-fallthrough": 2,
+    // no function declarations inside loop
+    "no-loop-func": 2,
+    // prefer {} vs new Object();
+    "no-new-object": 2,
+    // prefer object() shorthand function declarations
+    "object-shorthand": 2,
+    // quotes around property names only when needed & for reserved words
+    "quote-props": [2, "as-needed", { "keywords": true }],
+    // prefer [] vs new Array()
+    "no-array-constructor": 2,
+    // always return from array method callbacks
+    "array-callback-return": 2,
+    // prefer template strings vs concatenation
+    "prefer-template": 2,
+    // prefer ${name} vs ${ name }
+    "template-curly-spacing": 2
+  }
+};
+```
+
+Tomorrow I plan on continuing with my esLint configuration and hopefully get some integration tests set up for the API to test all of the possible routes.
+
+Thanks for reading! Please ask questions or leave comments in the box below, and if you'd like to follow the project, please click on this link: [https://github.com/lyndseybrowning/wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
+
+
+
+
+
+
+
