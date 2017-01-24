@@ -1,0 +1,190 @@
+---
+layout: post
+title: "#100DaysofCode - Day 15"
+date: January 23, 2017
+pageClass: post
+---
+
+Current Project: [wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
+
+On Day 15, I wrote some of my first **passing** tests.
+
+I'm using [Supertest](https://github.com/visionmedia/supertest) to test the API. Supertest is a library for testing node.js HTTP servers. You pass an instance of your server to the Supertest library which then simulates the requests for you. Here's an example:
+
+```javascript
+import request from 'supertest';
+import express from 'express';
+
+// create server, or import an existing server set up
+const app = express();
+
+// simulate request
+request(app)
+  .get('/api/some/url')
+  .expect(200)
+  .end((err, res) => {
+    if(err) {
+      throw(err);
+    }
+
+    console.log(res); // this is the result returned from /api/some/url
+  });
+```
+
+To test the results returned from the API, I'm using [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/). (**Note:** Supertest works with any test framework). Mocha is the test framework itself and Chai is the assertion library that allows us to express our tests in a readable, expressive style.
+
+To begin creating tests, simply create a ```test``` directory in the route of the project and add a new javascript file corresponding to the nature of the test. Here is an example:
+
+```javascript
+// I'm importing chai.expect() but other options are available
+// such as should and assert
+import { expect } from 'chai';
+
+function sumTwoNumbers(a, b) {
+  return a + b;
+}
+
+// describe and it are part of Mocha's test framework
+describe('Sum Numbers', () => {
+  it('should sum two numbers correctly', () => {
+    const sum = sumTwoNumbers(1,2);
+    // expect is the assertion library
+    expect(sum).to.equal(3);    
+  });
+});
+```
+
+To run the test, we need to create a script in our ```package.json``` file:
+
+```json
+"scripts": {
+  "test": "NODE_ENV=test mocha --compilers js:babel-core/register"
+}
+```
+
+The ```js:babel-core/register``` tells Mocha to compile ES6 (as it compiles ES5 by default).
+
+When we run ```npm test```, all test files in the test directory are run automatically and from the example above, we should see the output:
+
+```
+Sum Numbers
+✓ should sum two numbers correctly
+```
+
+A failing test will force an error in the console.
+
+The first test I made for my API was to test the word validity end point: ```/api/valid/:word```. I decided that I would need the following tests:
+
+- A 404 status should be returned when no word is passed
+- The result returned should be in JSON format
+- A successful call should return the passed in word in lowercase
+- The API should return ```false```when an invalid word is passed
+- The API should return ```true``` when a valid word is passed
+
+Since all tests are related to the same API end point, I grouped them all in one ```describe()``` block:
+
+```javascript
+describe('GET /api/valid/:word', () => {
+  it('should return a 404 status when no word is passed');  
+  it('responds with json');
+  it('should convert the word to lowercase');
+  it('returns false when an invalid word is requested');
+  it('returns false when an valid word is requested');
+});
+```
+
+The first test was the simplest, a check for a 404 status code:
+
+```javascript
+request(app)
+  .get('/api/valid')
+  .expect(404, done);
+```
+
+```done``` is passed as a callback from the ```it()``` function.
+
+To check for a JSON formatted result, I had to check the ```Content-Type```:
+
+```javascript
+request(app)
+  .get('/api/valid/car')
+  .expect('Content-Type', /json/)
+  .expect(200, done);
+```
+
+Once I'd successfully created the first two tests, the rest came a lot more easily:
+
+```javascript
+it('should convert the word to lowercase', (done) => {
+    // create a word with one or more uppercase characters
+    const word = 'EXPERIMENT';
+
+    request(app)
+      .get(`/api/valid/${word}`)
+      .end((err, res) => {
+        if(err) {
+          return done(err);
+        }
+        // res.body is the data returned from the API
+        // e.g. { word: 'experiment', valid: true }
+        expect(res.body.word).to.equal(word.toLowerCase());
+        done();
+      });
+});
+
+it('returns false when an invalid word is requested', (done) => {
+  // create a random word that I know is invalid
+  const invalidWord = 'randomdummyword';
+
+  request(app)
+    .get(`/api/valid/${invalidWord}`)
+    .end((err, res) => {
+      if(err) {
+        return done(err);
+      }
+
+      // deep equal checks that the object returned in res.body
+      // matches the object passed to the equal() method
+      expect(res.body).to.deep.equal({
+        word: invalidWord,
+        valid: false
+      });
+      done();
+    });
+});
+
+it('returns true when a valid word is requested', (done) => {
+  const validWord = 'antidisestablishmentarianism';
+
+  request(app)
+    .get(`/api/valid/${validWord}`)
+    .end((err, res) => {
+      if(err) {
+        return done(err);
+      }
+
+      expect(res.body).to.deep.equal({
+        word: validWord,
+        valid: true
+      });
+      done();
+    });
+});
+```
+
+Running ```npm test``` gave me the following output:
+
+```
+GET /api/valid/:word
+    ✓ should return a 404 status when no word is passed
+    ✓ responds with json
+    ✓ should convert the word to lowercase
+    ✓ returns false when an invalid word is requested
+    ✓ returns true when a valid word is requested
+
+  5 passing (53ms)
+```
+
+On day 16, I'm going to continue adding more API tests to handle the list route that fetches words based on length, prefix and suffix.
+
+Thanks for reading! Please ask questions or leave comments in the box below, and if you'd like to follow the project, please click on this link: [https://github.com/lyndseybrowning/wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
