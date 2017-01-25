@@ -1,0 +1,39 @@
+---
+layout: post
+title: "#100DaysofCode - Day 17"
+date: January 25, 2017
+pageClass: post
+---
+
+Current Project: [wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
+
+I decided that I wanted my tests to automatically run every time I changed a test file. I could do this using the watch flag inside my package.json file:
+
+```json
+"scripts": {
+  "test": "NODE_ENV=test mocha --compilers js:babel-core/register -w"
+}
+```
+
+However, each time I changed a file, I was receiving the following error:
+
+```
+1)  Uncaught error outside test suite:
+    Uncaught Error: listen EADDRINUSE :::8080
+```
+
+A little bit of [reading](http://stackoverflow.com/questions/32868692/mocha-watching-fails-under-npm) later led me to understand that I was starting my app twice, once from under the tests and another in my actual app.
+
+To fix this error, I simply needed to do the following in my ```server.js``` file:
+
+```javascript
+if(!module.parent) {
+  app.server.listen(port);
+}
+```
+
+Click [here](https://github.com/lyndseybrowning/wordapi.net/blob/master/src/server.js) for the full file.
+
+So now I can write my tests and have them update as I make changes. Saves me having to ```npm test``` each time I add/update tests.
+
+Thanks for reading! Please ask questions or leave comments in the box below, and if you'd like to follow the project, please click on this link: [https://github.com/lyndseybrowning/wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
