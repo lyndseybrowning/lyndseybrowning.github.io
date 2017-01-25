@@ -1,0 +1,57 @@
+---
+layout: post
+title: "#100DaysofCode - Day 16"
+date: January 24, 2017
+pageClass: post
+---
+
+Current Project: [wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
+
+On Day 15, I'd successfully [wrote some tests](http://lyndseyb.co.uk/posts/100-days-of-code-day-15) with Supertest, Mocha and Chai.
+
+My plan for today was to start writing more tests. However, I realised that it probably wouldn't be wise to keep all tests in one file. It could become a nightmare to maintain as the system grows.
+
+I also thought it would be better to keep the API tests away from the unit tests. So I created one main file that would import all tests from the ```api``` folder:
+
+**api.js**
+
+```javascript
+import fs from 'fs';
+import request from 'supertest';
+import { expect } from 'chai';
+import app from '../src/index';
+
+const api = `${__dirname}/api/`;
+const tests = fs.readdirSync(api);
+
+tests.forEach((test) => {
+  require(`./api/${test}`)(request, expect, app);
+});
+```
+
+I've used the ```fs``` module which reads all files from the ```api``` directory and passes the ```request, expect``` and ```app``` modules to each so that they don't have to be imported every time in each file.
+
+The test files themselves simply need to export the tests they are describing:
+
+**api/valid.test.js**
+
+```javascript
+module.exports = function(request, expect, app) {
+  describe('GET /api/valid/:word', () => {
+    it('should return a 404 status when no word is passed', (done) => {
+      request(app)
+        .get('/api/valid')
+        .expect(404, done);
+    });
+
+    // etc...
+};
+```
+
+This approach allows me to create as many test files inside the ```api``` directory as I'd like with only one instance of my test modules that are passed into each test.
+
+To view the whole directory setup, please click [here](https://github.com/lyndseybrowning/wordapi.net/tree/master/test).
+
+On Day 17, I plan on continuing to add more API tests.
+
+Thanks for reading! Please ask questions or leave comments in the box below, and if you'd like to follow the project, please click on this link: [https://github.com/lyndseybrowning/wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
