@@ -25,10 +25,10 @@ it('should send a 500 status when no required params are passed', (done) => {
 
 The data being returned should be an object containing the following properties:
 
-```javascript
+```
 {
   "wordsFound": 0,
-  "wordList" []
+  "wordList": []
 }
 ```
 
@@ -56,7 +56,6 @@ expect(res.body.wordList).to.be.a('array');
 ```
 
 The full test list is shown below:
-
 ```javascript
 describe('GET /api/list', () => {
     it('should send a 500 status when no required params are passed', (done) => {
@@ -113,7 +112,7 @@ describe('GET /api/list', () => {
         });
     });
 });
-```
+{% endhighlight %}
 
 I now have passing tests for another route! Tomorrow, I'll continue testing my app and will start learning more about unit testing.
 
