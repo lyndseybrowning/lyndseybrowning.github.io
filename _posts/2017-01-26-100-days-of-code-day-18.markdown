@@ -112,7 +112,7 @@ describe('GET /api/list', () => {
         });
     });
 });
-{% endhighlight %}
+```
 
 I now have passing tests for another route! Tomorrow, I'll continue testing my app and will start learning more about unit testing.
 
