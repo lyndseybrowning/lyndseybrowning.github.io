@@ -56,6 +56,7 @@ expect(res.body.wordList).to.be.a('array');
 ```
 
 The full test list is shown below:
+
 ```javascript
 describe('GET /api/list', () => {
     it('should send a 500 status when no required params are passed', (done) => {
