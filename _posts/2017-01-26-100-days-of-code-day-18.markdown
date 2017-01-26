@@ -25,7 +25,7 @@ it('should send a 500 status when no required params are passed', (done) => {
 
 The data being returned should be an object containing the following properties:
 
-```json
+```javascript
 {
   "wordsFound": 0,
   "wordList" []
@@ -34,10 +34,10 @@ The data being returned should be an object containing the following properties:
 
 I created four separate tests to validate the result:
 
-1) it should return JSON
-2) it should return an object with properties: wordsFound and wordList
-3) it should return the number of words found as a Number
-4) it should return the words found as an Array
+1. it should return JSON
+2. it should return an object with properties: wordsFound and wordList
+3. it should return the number of words found as a Number
+4. it should return the words found as an Array
 
 To check that the result was an object, I used the ```.to.have.keys``` method (**note** I am using [Chai](http://chaijs.com/api/bdd/)) as the assertion library):
 
