@@ -1,0 +1,178 @@
+---
+layout: post
+title: "#100DaysofCode - Day 21"
+date: January 30, 2017
+pageClass: post
+---
+
+Current Project: [wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
+
+Today I took some advice from a friend and took the Unit Testing back to the beginning. His advice was for me to work towards a ***single*** failing test and to work on the implementation only when required to do so by the test.
+
+So, I cleared my existing dictionary module along with all of my existing tests and had a clean slate to start over.
+
+I wrote each test one by one this time. I didn't touch the actual module until I had a failing test. Once I had that, I implemented the code in the dictionary module that would pass the test.
+
+Here is an example:
+
+```javascript
+describe('Dictionary', () => {
+  it('returns an error message when the first argument is not an array', () => {
+    const actual = dictionary('abc');
+    const expected = 'The first argument must be an array';
+    expect(actual).to.equal(expected);
+  });
+});
+```
+
+This is a simple test to determine that the passed in argument is a valid type. The function is expecting an array and should return the expected string 'The first argument must be an array' when the argument is not an array.
+
+When I ran ```npm test```, I received my failing test:
+
+```javascript
+Dictionary
+  1) returns an error message when the first argument is not an array
+
+
+  0 passing (4ms)
+  1 failing
+
+  1) Dictionary returns an error message when the first argument is not an array:
+     AssertionError: expected undefined to equal 'The first argument must be an array'
+      at Context.<anonymous> (test/dictionary.test.js:8:24)
+```
+
+Now that I had my failing test, I could start creating the implementation to pass the test. I did this using the following code:
+
+```javascript
+export default (array) => {
+  if(!Array.isArray(array)) {
+    return 'The first argument must be an array';
+  }
+}
+```
+
+Now I had my first passing test:
+
+```javascript
+Dictionary
+  ✓ returns an error message when the first argument is not an array
+
+  1 passing (0ms)
+```
+
+For my second test, I wanted to ensure that the dictionary returned an ```object```. I set up the following test:
+
+```javascript
+it('returns an object literal', () => {
+  const actual = dictionary(['CAT', 'DOG']);
+  const expected = 'object';
+  expect(actual).to.be.a(expected);
+});
+```
+
+My test result now looked like this:
+
+```javascript
+Dictionary
+  ✓ returns an error message when the first argument is not an array
+  1) returns an object literal
+
+
+  1 passing (2ms)
+  1 failing
+
+  1) Dictionary returns an object literal:
+     AssertionError: expected undefined to be an object
+      at Context.<anonymous> (test/dictionary.test.js:12:5)
+```
+
+I passed the test by implementing the most simple solution. I could refactor the return methods later:
+
+```javascript
+export default (array) => {
+  if(!Array.isArray(array)) {
+    return 'The first argument must be an array';
+  }
+
+  return {};
+}
+```
+
+```javascript
+Dictionary
+  ✓ returns an error message when the first argument is not an array
+  ✓ returns an object literal
+
+  2 passing (1ms)
+```
+
+For my next test, I went on to creating the first failing test for the ```filterByLength``` method that the dictionary module would expose. This method should take a number e.g 7 and return all words in the array that are 7 letters long. I created a new ```describe``` block for this to group all method-related tests together:
+
+```javascript
+describe('Filtering by length', () => {
+  it('returns an error message when the first argument is not a number');
+});
+
+Dictionary
+  ✓ returns an error message when the first argument is not an array
+  ✓ returns an object literal
+  Filtering by length
+    - returns an error message when the first argument is not a number
+
+  2 passing (0ms)
+  1 pending
+```
+
+I wrote the failing test and resulting implementation as follows:
+
+```javascript
+describe('Filtering by length', () => {
+  // set up a dummy dictionary
+  const words = dictionary(['DOG', 'CAT', 'TIGER', 'LION', 'LEOPARD']);
+  const length = 3;
+
+  it('returns an error message when the first argument is not a number', () => {
+    const actual = words.filterByLength('abc');
+    const expected = 'The first argument must be a number';
+
+    expect(actual).to.equal(expected);
+  });
+});
+```
+
+Since I hadn't yet created the method itself, I received the following failing test:
+
+```javascript
+Dictionary
+  ✓ returns an error message when the first argument is not an array
+  ✓ returns an object literal
+  Filtering by length
+    1) returns an error message when the first argument is not a number
+
+
+2 passing (2ms)
+1 failing
+
+1) Dictionary Filtering by length returns an error message when the first argument is not a number:
+   TypeError: words.filterByLength is not a function
+    at Context.<anonymous> (test/dictionary.test.js:27:26)
+```
+
+I implemented the passing test as follows:
+
+```javascript
+return {
+  filterByLength(length) {
+    if(typeof length !== 'number') {
+      return 'The first argument must be a number';
+    }
+  },
+};
+```
+
+I continued to write some more tests and felt like I was beginning to understand a lot more about the benefits of coding test-first. Doing it this way means you only implement what you need. My code already feels nicer and more readable.
+
+To see my updated tests, please click [here](https://github.com/lyndseybrowning/wordapi.net/tree/master/test).
+
+Thanks for reading! Please ask questions or leave comments in the box below, and if you'd like to follow the project, please click on this link: [https://github.com/lyndseybrowning/wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
