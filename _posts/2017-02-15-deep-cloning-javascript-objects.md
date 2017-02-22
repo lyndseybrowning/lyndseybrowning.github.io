@@ -135,13 +135,18 @@ Now that I knew this, I needed a way to deep-clone my object. The most obvious m
 
 ```javascript
 function cloneObject(obj) {
-  const clone = Object.keys(obj).reduce((acc, prop) => {
+	const cloned = Object.keys(obj).reduce((acc, prop) => {
   	acc[prop] = obj[prop];
+
+    if(typeof obj[prop] === 'object' && !Array.isArray(obj[prop])) {
+      acc[prop] = cloneObject(obj[prop]);
+    }
+
     return acc;
   }, {});
 
-  return clone;
-};
+  return cloned;
+}
 ```
 
 I tested it and it worked:
