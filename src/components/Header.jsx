@@ -1,16 +1,13 @@
-import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { Link } from "gatsby"
+import PropTypes from "prop-types"
+import React from "react"
 
 const Header = ({ siteTitle, description }) => (
   <header>
     <h1>
       <Link to="/">{siteTitle}</Link>
     </h1>
-    <h2>
-      {description}
-      {console.log(description)}
-    </h2>
+    <h2>{description}</h2>
   </header>
 )
 
@@ -20,8 +17,8 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
-  description: ``,
+  siteTitle: "",
+  description: "",
 }
 
 export default Header
