@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
+const matter = require('gray-matter');
 
 const args = process.argv.splice(2, process.argv.length);
 const watchForChanges = args.find(arg => arg === '--watch' || arg === '-w');
@@ -15,14 +16,16 @@ const createPosts = () => {
             throw new Error('Unable to read directory');
         }
 
-        const posts = files.reduce((postsArray, post) => {
-            const filePath = `${paths.POSTS_DIR}/${post}`;
+        const posts = files.reduce((postsArray, filename) => {
+            const filePath = `${paths.POSTS_DIR}/${filename}`;
             const markdown = fs.readFileSync(filePath, 'utf8');
-            const markdownToHtml = marked(markdown);
+            const { content, data } = matter(markdown);
+            const post = {
+                post: marked(content),
+                data,
+            };
 
-            postsArray.push({
-                post: markdownToHtml,
-            });
+            postsArray.push(post);
 
             return postsArray;
         }, []);

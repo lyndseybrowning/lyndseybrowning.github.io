@@ -26,6 +26,7 @@
     ],
     "devDependencies": {
         "concurrently": "4.1.0",
+        "gray-matter": "4.0.2",
         "marked": "0.6.0"
     }
 }
