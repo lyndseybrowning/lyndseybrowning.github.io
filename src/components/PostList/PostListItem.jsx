@@ -5,12 +5,14 @@ import { Link } from 'react-router-dom';
 
 const PostListItem = ({ data, slug }) => {
     return (
-        <PostListItemStyled>
-            <Link to={`/posts/${slug}`}>
-                <h2>{data.title}</h2>
-            </Link>
-            <Tags keywords={data.keywords} />
-            <time>{data.date}</time>
+        <PostListItemStyled className="c-post">
+            <header className="c-post__header">
+                <Link to={`/posts/${slug}`} className="c-post__link">
+                    <h3>{data.title}</h3>
+                </Link>
+                <Tags keywords={data.keywords} />
+                <time>{data.date}</time>
+            </header>
             <p>{data.description}</p>
         </PostListItemStyled>
     );
