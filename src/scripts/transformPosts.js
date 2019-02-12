@@ -20,9 +20,11 @@ const createPosts = () => {
             const filePath = `${paths.POSTS_DIR}/${filename}`;
             const markdown = fs.readFileSync(filePath, 'utf8');
             const { content, data } = matter(markdown);
+            const slug = data.title.toLowerCase().replace(/\s/g, '-');
             const post = {
                 post: marked(content),
                 data,
+                slug,
             };
 
             postsArray.push(post);

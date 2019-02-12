@@ -6,12 +6,6 @@ export const PostListStyled = styled.ul`
 `;
 
 export const PostListItemStyled = styled.li`
-    cursor: pointer;
     padding: 1rem;
     margin-bottom: 1rem;
-    border-bottom: 2px dotted lightgrey;
-
-    &:hover {
-        background-color: #f7f7f7;
-    }
 `;
