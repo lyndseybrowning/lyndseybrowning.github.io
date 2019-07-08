@@ -1,7 +1,7 @@
-import React from 'react';
-import { PostListStyled } from './PostList.styled';
-import PostListItem from './PostListItem';
-import posts from '../../scripts/posts';
+import React from "react";
+import { PostListStyled } from "./PostList.styled";
+import PostListItem from "./PostListItem";
+import posts from "../../scripts/posts";
 
 const PostList = () => (
     <PostListStyled>

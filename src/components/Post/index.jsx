@@ -1,7 +1,7 @@
-import React from 'react';
-import PageNotFound from '../PageNotFound';
-import PostStyled from './Post.styled';
-import posts from '../../scripts/posts';
+import React from "react";
+import PageNotFound from "../PageNotFound";
+import PostStyled from "./Post.styled";
+import posts from "../../scripts/posts";
 
 const Post = ({ match }) => {
     const post = posts.find(post => post.slug === match.params.post);

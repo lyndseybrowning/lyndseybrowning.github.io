@@ -1,7 +1,7 @@
-import React from 'react';
-import { PostListItemStyled } from './PostList.styled';
-import Tags from '../Tags';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { PostListItemStyled } from "./PostList.styled";
+import Tags from "../Tags";
+import { Link } from "react-router-dom";
 
 const PostListItem = ({ data, slug }) => {
     return (

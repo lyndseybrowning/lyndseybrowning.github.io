@@ -1,5 +1,5 @@
-import React from 'react';
-import { TagListStyled, TagStyled } from './Tags.styled';
+import React from "react";
+import { TagListStyled, TagStyled } from "./Tags.styled";
 
 const Tags = ({ keywords }) => (
     <TagListStyled aria-label="keywords">

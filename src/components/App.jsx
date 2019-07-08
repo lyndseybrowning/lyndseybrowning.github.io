@@ -1,10 +1,10 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyle, { theme } from './GlobalStyle';
-import PostList from './PostList';
-import Post from './Post';
-import PageNotFound from './PageNotFound';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle, { theme } from "./GlobalStyle";
+import PostList from "./PostList";
+import Post from "./Post";
+import PageNotFound from "./PageNotFound";
 
 const App = () => (
     <BrowserRouter>
@@ -13,7 +13,7 @@ const App = () => (
                 <GlobalStyle />
                 <header>
                     <h1>Lyndsey Browning</h1>
-                    <h2>Front end development blog</h2>
+                    <h2>Front End Developer</h2>
                 </header>
                 <Switch>
                     <Route path="/" exact component={PostList} />

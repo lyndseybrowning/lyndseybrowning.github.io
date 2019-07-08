@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const PageNotFoundStyled = styled.div`
     display: flex;
@@ -13,7 +13,7 @@ const PageNotFoundStyled = styled.div`
 
 const PageNotFound = () => {
     useEffect(() => {
-        document.title = '404: Page not found';
+        document.title = "404: Page not found";
     });
 
     return (
