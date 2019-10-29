@@ -1,8 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const theme = {
-    primaryFontColor: '#313639',
-    primaryColor: '#ff004f',
+    primaryFontColor: "#313639",
+    primaryColor: "#ff004f",
 };
 
 const GlobalStyle = createGlobalStyle`

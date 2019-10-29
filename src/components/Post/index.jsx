@@ -3,8 +3,12 @@ import PageNotFound from "../PageNotFound";
 import PostStyled from "./Post.styled";
 import posts from "../../scripts/posts";
 
+const findPostByUrl = url => {
+    return posts.flat().find(({ slug }) => slug === url);
+};
+
 const Post = ({ match }) => {
-    const post = posts.find(post => post.slug === match.params.post);
+    const post = findPostByUrl(match.params.post);
 
     if (!post) {
         return <PageNotFound />;
