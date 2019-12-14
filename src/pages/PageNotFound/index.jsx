@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+import useDocumentTitle from "hooks/useDocumentTitle";
 
 const PageNotFoundStyled = styled.div`
     display: flex;
@@ -12,9 +14,7 @@ const PageNotFoundStyled = styled.div`
 `;
 
 const PageNotFound = () => {
-    useEffect(() => {
-        document.title = "404: Page not found";
-    });
+    useDocumentTitle("404: Page not found");
 
     return (
         <PageNotFoundStyled>

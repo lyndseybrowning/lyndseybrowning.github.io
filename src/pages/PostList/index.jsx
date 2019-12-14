@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+
+import Pagination from "components/Pagination";
+import posts from "scripts/posts";
+import { APP_SUBTITLE } from "scripts/config";
+import useDocumentTitle from "hooks/useDocumentTitle";
 import { PostListStyled } from "./PostList.styled";
 import PostListItem from "./PostListItem";
-import Pagination from "../Pagination";
-import posts from "../../scripts/posts";
 
 const totalPages = posts.length;
 
 const PostList = () => {
+    useDocumentTitle(APP_SUBTITLE);
+
     const [firstPage] = posts;
     const [currentPage, setCurrentPage] = useState(firstPage);
 

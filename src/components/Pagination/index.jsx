@@ -24,7 +24,7 @@ const Pagination = props => {
 
     useEffect(() => {
         onActivePageChange(currentPage);
-    });
+    }, [currentPage]);
 
     const setFirstPage = () => setCurrentPage(1);
     const setNextPage = () => setCurrentPage(currentPage + 1);

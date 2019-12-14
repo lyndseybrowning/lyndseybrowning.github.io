@@ -1,7 +1,9 @@
 import React from "react";
-import PageNotFound from "../PageNotFound";
+
+import posts from "scripts/posts";
+import useDocumentTitle from "hooks/useDocumentTitle";
+import PageNotFound from "pages/PageNotFound";
 import PostStyled from "./Post.styled";
-import posts from "../../scripts/posts";
 
 const findPostByUrl = url => {
     return posts.flat().find(({ slug }) => slug === url);
@@ -13,6 +15,8 @@ const Post = ({ match }) => {
     if (!post) {
         return <PageNotFound />;
     }
+
+    useDocumentTitle(post.data.title);
 
     const postHtml = {
         __html: post.post,
