@@ -1,7 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import PropTypes from "prop-types";
+
+import { PAGINATION_ACTIVE_PAGE_RANGE } from "scripts/config";
 import Button from "./Button";
 import ActivePageRange from "./ActivePageRange";
+
+const getStartAndEndPage = (activePageRange, currentPage, totalPages) => {
+    const medianPageRange = Math.floor(activePageRange / 2);
+    const lowerPageRange = currentPage - medianPageRange;
+    const upperPageRange = currentPage + medianPageRange;
+
+    return {
+        startPage: lowerPageRange < 1 ? 1 : lowerPageRange,
+        endPage: upperPageRange > totalPages ? totalPages : upperPageRange,
+    };
+};
 
 const Pagination = props => {
     const {
@@ -15,12 +28,10 @@ const Pagination = props => {
     const isFirstPage = currentPage === 1;
     const isLastPage = currentPage === totalPages;
 
-    const medianPageRange = Math.floor(activePageRange / 2);
-    const lowerPageRange = currentPage - medianPageRange;
-    const upperPageRange = currentPage + medianPageRange;
-
-    const startPage = lowerPageRange < 1 ? 1 : lowerPageRange;
-    const endPage = upperPageRange > totalPages ? totalPages : upperPageRange;
+    const { startPage, endPage } = useMemo(
+        () => getStartAndEndPage(activePageRange, currentPage, totalPages),
+        [currentPage],
+    );
 
     useEffect(() => {
         onActivePageChange(currentPage);
@@ -53,7 +64,7 @@ const Pagination = props => {
 
 Pagination.defaultProps = {
     activePage: 1,
-    activePageRange: 5,
+    activePageRange: PAGINATION_ACTIVE_PAGE_RANGE,
 };
 
 Pagination.propTypes = {
