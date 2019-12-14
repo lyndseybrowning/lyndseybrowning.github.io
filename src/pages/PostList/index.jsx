@@ -15,15 +15,25 @@ const PostList = () => {
     const [firstPage] = posts;
     const [currentPage, setCurrentPage] = useState(firstPage);
 
+    const renderPagination = () => {
+        if (totalPages === 1) {
+            return null;
+        }
+
+        return (
+            <Pagination
+                totalPages={totalPages}
+                onActivePageChange={page => setCurrentPage(posts[page - 1])}
+            />
+        );
+    };
+
     return (
         <PostListStyled>
             {currentPage.map(({ data, slug }) => (
                 <PostListItem key={data.title} data={data} slug={slug} />
             ))}
-            <Pagination
-                totalPages={totalPages}
-                onActivePageChange={page => setCurrentPage(posts[page - 1])}
-            />
+            {renderPagination()}
         </PostListStyled>
     );
 };

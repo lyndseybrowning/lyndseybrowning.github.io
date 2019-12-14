@@ -27,8 +27,8 @@ const GlobalStyle = createGlobalStyle`
 
     .o-wrapper {
         max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
+        // margin-left: auto;
+        // margin-right: auto;
     }
 `;
 
