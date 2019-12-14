@@ -6,30 +6,30 @@ const theme = {
 };
 
 const GlobalStyle = createGlobalStyle`
-  html {
-    font-size: 67.5%;
-  }
+    html {
+        font-size: 67.5%;
+    }
 
-  body {
-    font-size: 1.6rem;
-    font-family: 'Alegreya Sans';
-    color: ${theme.primaryFontColor};
-  }
+    body {
+        font-size: 1.6rem;
+        font-family: 'Alegreya Sans';
+        color: ${theme.primaryFontColor};
+    }
 
-  ul {
-    padding-left: 0;
-  }
+    ul {
+        padding-left: 0;
+    }
 
-  h1, h2 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
+    h1, h2 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
 
-  .o-wrapper {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    .o-wrapper {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 `;
 
 export { theme };
