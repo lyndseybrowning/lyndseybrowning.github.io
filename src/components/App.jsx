@@ -1,15 +1,15 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle, { theme } from "./GlobalStyle";
-import PostList from "pages/PostList";
-import Post from "pages/Post";
-import PageNotFound from "pages/PageNotFound";
+import PostList from "pages/postList";
+import Post from "pages/post";
+import PageNotFound from "pages/pageNotFound";
 import { APP_TITLE, APP_SUBTITLE } from "../scripts/config";
 
 const App = () => {
     return (
-        <BrowserRouter>
+        <Router>
             <ThemeProvider theme={theme}>
                 <div className="o-wrapper">
                     <GlobalStyle />
@@ -24,7 +24,7 @@ const App = () => {
                     </Switch>
                 </div>
             </ThemeProvider>
-        </BrowserRouter>
+        </Router>
     );
 };
 

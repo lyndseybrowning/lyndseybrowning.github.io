@@ -1,6 +1,6 @@
 import React from "react";
 import { PostListItemStyled } from "./PostList.styled";
-import Tags from "../../components/Tags";
+import Tags from "../../components/tags";
 import { Link } from "react-router-dom";
 
 const PostListItem = ({ data, slug }) => {

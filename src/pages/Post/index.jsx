@@ -2,7 +2,7 @@ import React from "react";
 
 import posts from "scripts/posts";
 import useDocumentTitle from "hooks/useDocumentTitle";
-import PageNotFound from "pages/PageNotFound";
+import PageNotFound from "pages/pageNotFound";
 import PostStyled from "./Post.styled";
 
 const findPostByUrl = url => {

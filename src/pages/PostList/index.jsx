@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Pagination from "components/Pagination";
+import Pagination from "components/pagination";
 import posts from "scripts/posts";
 import { APP_SUBTITLE } from "scripts/config";
 import useDocumentTitle from "hooks/useDocumentTitle";
