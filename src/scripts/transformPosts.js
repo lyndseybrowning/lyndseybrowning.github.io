@@ -2,8 +2,6 @@ const fs = require("fs");
 const path = require("path");
 const marked = require("marked");
 const matter = require("gray-matter");
-const createPages = require("./create-pages");
-const { PAGE_SIZE } = require("./config");
 
 const args = process.argv.splice(2, process.argv.length);
 const watchForChanges = args.find(arg => arg === "--watch" || arg === "-w");
@@ -34,8 +32,7 @@ const createPosts = () => {
             return postsArray;
         }, []);
 
-        const pages = createPages(posts, PAGE_SIZE);
-        const fileContents = `export default ${JSON.stringify(pages)}`;
+        const fileContents = `export default ${JSON.stringify(posts)}`;
 
         fs.writeFile(`${paths.OUTPUT_DIR}/posts.js`, fileContents, err => {
             if (err) {

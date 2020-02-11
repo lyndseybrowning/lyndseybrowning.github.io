@@ -12,11 +12,11 @@ const findPostByUrl = url => {
 const Post = ({ match }) => {
     const post = findPostByUrl(match.params.post);
 
+    useDocumentTitle(post.data.title);
+
     if (!post) {
         return <PageNotFound />;
     }
-
-    useDocumentTitle(post.data.title);
 
     const postHtml = {
         __html: post.post,
