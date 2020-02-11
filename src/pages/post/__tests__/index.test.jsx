@@ -6,36 +6,50 @@ import posts from "scripts/posts";
 import Post from "../";
 
 describe("Post component", () => {
-    it("should display the PageNotFound component when the requested post does not exist", () => {
-        const invalidPost = {
-            params: {
-                post: "invalid-post",
-            },
-        };
+    describe("when the requested post does not exist", () => {
+        it("should display the PageNotFound component when the requested post does not exist", () => {
+            const invalidPost = {
+                params: {
+                    post: "invalid-post",
+                },
+            };
 
-        render(
-            <MemoryRouter>
-                <Post match={invalidPost} />
-            </MemoryRouter>,
-        );
+            render(
+                <MemoryRouter>
+                    <Post match={invalidPost} />
+                </MemoryRouter>,
+            );
 
-        expect(document.title).toContain("404: Page not found");
+            expect(document.title).toContain("404: Page not found");
+        });
     });
 
-    it("should render the post when it is a valid post", () => {
+    describe("when a valid post exists", () => {
         const validPost = {
             params: {
                 post: "mock-post",
             },
         };
+
         const mockPost = posts.find(p => p.slug === validPost.params.post);
 
-        const { getByRole } = render(
-            <MemoryRouter>
-                <Post match={validPost} />
-            </MemoryRouter>,
-        );
+        let wrapper;
 
-        expect(getByRole("article").textContent).toBe(mockPost.post);
+        beforeEach(() => {
+            wrapper = render(
+                <MemoryRouter>
+                    <Post match={validPost} />
+                </MemoryRouter>,
+            );
+        });
+
+        it("should render the post when it is a valid post", () => {
+            const post = wrapper.getByRole("article");
+            expect(post.textContent).toBe(mockPost.post);
+        });
+
+        it("should display the post name in the document title", () => {
+            expect(document.title).toContain(mockPost.data.title);
+        });
     });
 });
