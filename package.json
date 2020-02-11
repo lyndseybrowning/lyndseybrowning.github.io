@@ -26,6 +26,13 @@
         "not ie <= 11",
         "not op_mini all"
     ],
+    "jest": {
+        "coveragePathIgnorePatterns": [
+            "<rootDir>/src/index.js",
+            "<rootDir>/src/components/App.jsx",
+            "<rootDir>/src/components/GlobalStyle.jsx"
+        ]
+    },
     "devDependencies": {
         "@testing-library/jest-dom": "5.0.2",
         "@testing-library/react": "9.4.0",
