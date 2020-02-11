@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const PostListItem = ({ data, slug }) => {
     return (
-        <PostListItemStyled className="c-post">
+        <PostListItemStyled className="c-post" data-testid={slug}>
             <header className="c-post__header">
                 <Link to={`/posts/${slug}`} className="c-post__link">
                     <h3>{data.title}</h3>

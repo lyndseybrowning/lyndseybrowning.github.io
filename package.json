@@ -12,8 +12,8 @@
     "scripts": {
         "start": "react-scripts start && yarn create-posts -- --watch",
         "build": "yarn create-posts && react-scripts build",
-        "test": "react-scripts test --env=jsdom",
-        "test:cover": "yarn test --coverage",
+        "test": "react-scripts test",
+        "test:cover": "yarn test --coverage --watchAll=false",
         "eject": "react-scripts eject",
         "create-posts": "node ./src/scripts/transformPosts"
     },
