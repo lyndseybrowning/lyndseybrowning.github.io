@@ -13,7 +13,7 @@
         "start": "react-scripts start && yarn create-posts -- --watch",
         "build": "yarn create-posts && react-scripts build",
         "test": "react-scripts test",
-        "test:cover": "yarn test --coverage --watchAll=false",
+        "test:cover": "yarn test --coverage --silent --watchAll=false",
         "eject": "react-scripts eject",
         "create-posts": "node ./src/scripts/transformPosts"
     },
@@ -30,7 +30,8 @@
         "coveragePathIgnorePatterns": [
             "<rootDir>/src/index.js",
             "<rootDir>/src/components/App.jsx",
-            "<rootDir>/src/components/GlobalStyle.jsx"
+            "<rootDir>/src/components/GlobalStyle.jsx",
+            "<rootDir>/src/scripts/transformPosts.js"
         ]
     },
     "devDependencies": {
