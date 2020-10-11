@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle, { theme } from "./GlobalStyle";
 import PostList from "pages/postList";
@@ -13,9 +13,16 @@ const App = () => {
             <ThemeProvider theme={theme}>
                 <div className="o-wrapper">
                     <GlobalStyle />
-                    <header>
-                        <h1>{APP_TITLE}</h1>
-                        <h2>{APP_SUBTITLE}</h2>
+                    <header className="header">
+                        <h1 className="header__title">
+                            <Link to="/">{APP_TITLE}</Link>
+                        </h1>
+                        <h2 className="header__subtitle">{APP_SUBTITLE}</h2>
+                        <img
+                            src="/profile.png"
+                            alt=""
+                            className="header__photo"
+                        />
                     </header>
                     <Switch>
                         <Route path="/" exact component={PostList} />
