@@ -1,7 +1,8 @@
 ---
-layout: post
-title: "Creating a nested list view using React"
-pageClass: post
+title: Creating a nested list view using React
+date: 4th April 2016
+description: How to create a nested list using React
+keywords: ["react", "nested list", "javascript"]
 ---
 
 This post details how to create a nested list using React.
@@ -11,6 +12,7 @@ You can find a working demo [here](https://jsbin.com/jatohodive/edit?js,output).
 A nested list can be created in a few minutes using standard HTML. I'll use a simple organisational structure as an example:
 
 {% highlight html %}
+
 <ul>
   <li> Managing Director
     <ul>
@@ -38,7 +40,7 @@ A nested list can be created in a few minutes using standard HTML. I'll use a si
     </ul>
   </li>
 </ul>
-{% endhighlight %}
+```
 
 The above results in the following output:
 
@@ -77,14 +79,15 @@ Let's say we have the structure available to us as a JavaScript array. In order 
 Using React, we can split this app into components that will allow us to recur easily.
 
 **Our Array Sample:**
-{% highlight javascript %}
+
+````js
 var people = [{
   id: 1,
   name: "Managing Director",
   people: [
     {
       id: 2,
-      name: "Sales Director"      
+      name: "Sales Director"
     }, {
       id: 3,
       name: "IT Director",
@@ -102,7 +105,7 @@ var people = [{
               name: "Support Technician"
             }
           ]
-        }        
+        }
       ]
     }, {
       id: 7,
@@ -133,27 +136,27 @@ This component uses ES5's ``` map() ``` function to loop through our ``` people 
 
 For each ```<Node />``` component (represented as a new list in our outputted HTML), we pass the current person and it's children as props.
 
-{% highlight javascript %}
-class Organisation extends React.Component {  
+```js
+class Organisation extends React.Component {
   render() {
     // loop through the persons array and create a new component for each, passing the current person (id and name) and it's children (person.people) as props
 
-    let nodes = people.map(function(person) {                   
+    let nodes = people.map(function(person) {
       return (
         <Node node={person} children={person.people} />
       );
-    });       
+    });
 
     return (
       <div>
         <ul className="org">
          {nodes}
-        </ul>        
+        </ul>
       </div>
     );
   }
 }
-{% endhighlight %}
+```
 
 The ``` <Node />``` component is where we output each individual list item and where the recursion takes place.
 
@@ -163,15 +166,15 @@ If there are no children, we don't need to recurse and can close off the list. I
 
 Instead of creating new output for each new child, we can simply use recursion so the ```<Node />``` component can call itself for as long as it needs to, until an element in the array does not have children.
 
-{% highlight javascript %}
+```js
 class Node extends React.Component {
 
-  render() {      
+  render() {
 
     let childnodes = null;
 
     // the Node component calls itself if there are children
-    if(this.props.children) {      
+    if(this.props.children) {
       childnodes = this.props.children.map(function(childnode) {
        return (
          <Node node={childnode} children={childnode.people} />
@@ -182,8 +185,8 @@ class Node extends React.Component {
     // return our list element
     // display children if there are any
     return (
-      <li key={this.props.node.id}>      
-        <span>{this.props.node.name}</span>        
+      <li key={this.props.node.id}>
+        <span>{this.props.node.name}</span>
         { childnodes ?
           <ul>{childnodes}</ul>
         : null }
@@ -191,6 +194,7 @@ class Node extends React.Component {
     );
   }
 }
-{% endhighlight %}
+```
 
 Using React makes this look nice and clean and since everything is a component, our app is managable.
+````

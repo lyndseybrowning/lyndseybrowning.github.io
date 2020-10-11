@@ -1,27 +1,26 @@
 ---
-layout: post
-title: "#100DaysofCode - Day 8"
-date: January 16, 2017
-pageClass: post
+title: "100 days of code day 8"
+date: 16th January 2017
+keywords: ["100 days of code"]
 ---
 
 Current Project: [Word API](https://github.com/lyndseybrowning/word-api).
 
 I renamed the project today because I think **word-api** better reflects what the API does. It doesn't store word definitions like a typical dictionary would do; it simply returns filtered lists and permutations.
 
-I performance tested returning prefix-ed lists as ***Arrays*** vs ***Tries*** today. The Trie was typically more than **4 times faster** when returning more than 15,000 words. For smaller lists, the speed of the Trie was sometimes up to **100 times faster**. Unbelievable!
+I performance tested returning prefix-ed lists as **_Arrays_** vs **_Tries_** today. The Trie was typically more than **4 times faster** when returning more than 15,000 words. For smaller lists, the speed of the Trie was sometimes up to **100 times faster**. Unbelievable!
 
-The ***Array*** approach takes the full dictionary as an array (approximately 272,000 words) and filters words using the ```.substring()``` method. Here is an example:
+The **_Array_** approach takes the full dictionary as an array (approximately 272,000 words) and filters words using the `.substring()` method. Here is an example:
 
 ```javascript
 let wordList = _dictionary; // array containing 272,000 words
 
 function filterByPrefix(prefix, word) {
-  const prefixLen = prefix.length;
-  const isValidWordLen = word.length >= prefixLen;
-  const isPrefix = word.substring(0, prefixLen) === prefix.toUpperCase();
+    const prefixLen = prefix.length;
+    const isValidWordLen = word.length >= prefixLen;
+    const isPrefix = word.substring(0, prefixLen) === prefix.toUpperCase();
 
-  return isValidWordLen && isPrefix;
+    return isValidWordLen && isPrefix;
 }
 
 wordList = wordList.filter(filterByPrefix.bind(null, prefix));
@@ -45,7 +44,7 @@ The Trie approach takes the full dictionary as a Trie and filters words using de
 }
 ```
 
-For more information on Tries, see this link: [https://en.wikipedia.org/wiki/Trie](https://en.wikipedia.org/wiki/Trie). 
+For more information on Tries, see this link: [https://en.wikipedia.org/wiki/Trie](https://en.wikipedia.org/wiki/Trie).
 
 Here is the method I used to recurse the Trie:
 
@@ -60,7 +59,7 @@ filterByPrefix(prefix, trie = _trie) {
 
   // we know that the prefix exists, so let's get the starting node
   // node in this instance is every key underneath the last letter in the prefix.
-  // If we'd passed in C as the prefix, the resulting node would be every object nested inside C, 
+  // If we'd passed in C as the prefix, the resulting node would be every object nested inside C,
   // so using the example Trie above, the next node would be the letter A.
   const node = getPrefix(prefix);
 
@@ -71,18 +70,18 @@ filterByPrefix(prefix, trie = _trie) {
 
 ```javascript
 function recursePrefix(prefix, node, wordList = []) {
-  let word = prefix;
-  for(let n in node) {
-    if(n === '$') {
-      wordList.push(word.toUpperCase());
-      word = '';
-    } else {
-      // if there are nodes below this node, keep recursing
-      // to find words!
-      recursePrefix(prefix + n, node[n], wordList);
+    let word = prefix;
+    for (let n in node) {
+        if (n === "$") {
+            wordList.push(word.toUpperCase());
+            word = "";
+        } else {
+            // if there are nodes below this node, keep recursing
+            // to find words!
+            recursePrefix(prefix + n, node[n], wordList);
+        }
     }
-  }
-  return wordList;
+    return wordList;
 }
 ```
 
@@ -94,9 +93,9 @@ I ran a few tests, filtering Prefixes by Array vs Trie and here are some results
 
 ```json
 {
-  "wordsFound": 31,
-  "dictionaryPrefix": "21.732ms",
-  "triePrefix": "0.071ms"
+    "wordsFound": 31,
+    "dictionaryPrefix": "21.732ms",
+    "triePrefix": "0.071ms"
 }
 ```
 
@@ -104,9 +103,9 @@ I ran a few tests, filtering Prefixes by Array vs Trie and here are some results
 
 ```json
 {
-  "wordsFound" :  154,
-  "dictionaryPrefix": "24.497ms",
-  "triePrefix": "0.212ms"
+    "wordsFound": 154,
+    "dictionaryPrefix": "24.497ms",
+    "triePrefix": "0.212ms"
 }
 ```
 
@@ -114,9 +113,9 @@ I ran a few tests, filtering Prefixes by Array vs Trie and here are some results
 
 ```json
 {
-  "wordsFound" :  15976,
-  "dictionaryPrefix": "33.989ms",
-  "triePrefix": "8.133ms"
+    "wordsFound": 15976,
+    "dictionaryPrefix": "33.989ms",
+    "triePrefix": "8.133ms"
 }
 ```
 

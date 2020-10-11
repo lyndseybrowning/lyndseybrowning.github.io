@@ -1,8 +1,7 @@
 ---
-layout: post
-title: "#100DaysofCode - Day 19 & 20"
-date: January 29, 2017
-pageClass: post
+title: "100 days of code day 19 & 20"
+date: 29th January 2017
+keywords: ["100 days of code"]
 ---
 
 Current Project: [wordapi.net](https://github.com/lyndseybrowning/wordapi.net).
@@ -55,34 +54,29 @@ describe('Dictionary', () => {
 });
 ```
 
-Each ```it``` block begins with the word ```should``` so that the test is a readable sentence e.g. ```it should return an array```.
+Each `it` block begins with the word `should` so that the test is a readable sentence e.g. `it should return an array`.
 
-The dictionary module will have multiple methods, so I decided to structure my code with multiple ```describe``` blocks, one for each separate method. This should give me a nice readable output when running the tests. I also created the template for the dictionary module that would be filled after each failing test:
+The dictionary module will have multiple methods, so I decided to structure my code with multiple `describe` blocks, one for each separate method. This should give me a nice readable output when running the tests. I also created the template for the dictionary module that would be filled after each failing test:
 
 ```javascript
-import path from 'path';
-import fs from 'fs';
-import config from './config';
+import path from "path";
+import fs from "fs";
+import config from "./config";
 
-const dictionary = function() {
-  const words = [];
+const dictionary = function () {
+    const words = [];
 
-  return {
-    init() {  
-    },
+    return {
+        init() {},
 
-    get() {
-    },
+        get() {},
 
-    filterByLength(length, dictionary = words) {
-    },
+        filterByLength(length, dictionary = words) {},
 
-    filterByPrefix(prefix, dictionary = words) {
-    },
+        filterByPrefix(prefix, dictionary = words) {},
 
-    filterBySuffix(suffix, dictionary = words) {
-    },
-  };
+        filterBySuffix(suffix, dictionary = words) {},
+    };
 };
 
 export default dictionary();
@@ -95,7 +89,7 @@ import { expect } from 'chai';
 import dictionary from '../src/dictionary';
 ```
 
-I also used Mocha's ```beforeEach``` method to initialise the dictionary before each test run, so that each test could reference the dictionary without having to recreate it each time:
+I also used Mocha's `beforeEach` method to initialise the dictionary before each test run, so that each test could reference the dictionary without having to recreate it each time:
 
 ```
 describe('Dictionary', () => {
@@ -107,7 +101,7 @@ describe('Dictionary', () => {
 });
 ```
 
-I started with the first method, the ```init()``` method, which will be responsible for reading an existing txt file into an array.
+I started with the first method, the `init()` method, which will be responsible for reading an existing txt file into an array.
 
 To create the failing test, I created the following code:
 
@@ -143,7 +137,7 @@ const dictionary = function() {
 };
 ```
 
-The ```init``` method returns the existing words array if it has already previously been initialised. When empty, I use Node's file system object to read the file into an array. When I run the tests again, I received a passing output:
+The `init` method returns the existing words array if it has already previously been initialised. When empty, I use Node's file system object to read the file into an array. When I run the tests again, I received a passing output:
 
 ```
 Dictionary
@@ -152,7 +146,7 @@ Dictionary
       ✓ should not return an empty array
 ```
 
-I followed the same process for the ```get()``` and  ```filterByLength()``` methods:
+I followed the same process for the `get()` and `filterByLength()` methods:
 
 ```
 describe('#get()', () => {

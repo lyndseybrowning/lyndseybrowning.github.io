@@ -1,8 +1,8 @@
 ---
-layout: post
-title: "JavaScript Trie - Prefix Tree"
-date: February 20, 2017
-pageClass: post
+title: JavaScript Prefix Tree
+date: 20th February 2017
+description: JavaScript implementation of a prefix tree 
+keywords: ["trie", "prefix tree", "javascript", "npm package"]
 ---
 
 A few days ago I published my first ever [npm package](https://www.npmjs.com/package/trie-prefix-tree), a JavaScript implementation of a Trie data storage model.
@@ -24,15 +24,15 @@ The Trie takes a predefined dictionary (e.g. an array of words) and performs ope
 Let's say we had an array of 100,000 words and we wanted to check that the prefix **A-** existed, i.e. strings that begin with the letter **A**. Using an array, we'd need to run a function against **every** item in the array to filter out valid prefixes. Perhaps something like this:
 
 ```javascript
-const array = ['cat', 'dog', 'lion', 'tiger'];
+const array = ["cat", "dog", "lion", "tiger"];
 
-const filterByPrefix = function(prefix, array) {
-  return array.filter((val) => {
-    return val.substring(0, prefix.length) === prefix
-  });
+const filterByPrefix = function (prefix, array) {
+    return array.filter((val) => {
+        return val.substring(0, prefix.length) === prefix;
+    });
 };
 
-fiterByPrefix('c', array); // ['cat'];
+fiterByPrefix("c", array); // ['cat'];
 ```
 
 The Trie on the other hand is far more efficient because instead of searching every possible item, we simply validate each character in turn against the Trie, storing the current position in the Trie as we recurse downwards to the next letter.
@@ -47,38 +47,46 @@ It is available as an [npm package](https://www.npmjs.com/package/trie-prefix-tr
 npm install trie-prefix-tree --save
 ```
 
-Once added to your package dependencies, you can import the module using Node's ```require()``` method:
+Once added to your package dependencies, you can import the module using Node's `require()` method:
 
 ```javascript
-const trie = require('trie-prefix-tree');
+const trie = require("trie-prefix-tree");
 ```
 
 Or by using ES2015 Modules, if that's what you prefer:
 
 ```javascript
-import trie from 'trie-prefix-tree';
+import trie from "trie-prefix-tree";
 ```
 
 Then, you need to instantiate the Trie with a predefined dictionary, e.g.
 
 ```javascript
-import trie from 'trie-prefix-tree';
+import trie from "trie-prefix-tree";
 
-const myTrie = trie(['dog', 'cat', 'lion', 'bear', 'parrot', 'koala', 'kitten']);
+const myTrie = trie([
+    "dog",
+    "cat",
+    "lion",
+    "bear",
+    "parrot",
+    "koala",
+    "kitten",
+]);
 ```
 
 Once you've instantiated the Trie, you can perform different operations on it, such as checking a prefix exists:
 
 ```javascript
-myTrie.isPrefix('k');  // true
-myTrie.isPrefix('ba'); // false
+myTrie.isPrefix("k"); // true
+myTrie.isPrefix("ba"); // false
 ```
 
 Retrieving a list of words with the given prefix:
 
 ```javascript
-myTrie.getPrefix('k');   // ['kitten', 'koala']
-myTrie.getPrefix('par'); // ['parrot']
+myTrie.getPrefix("k"); // ['kitten', 'koala']
+myTrie.getPrefix("par"); // ['parrot']
 ```
 
 Retrieving a full list of words in the Trie:
@@ -90,15 +98,15 @@ myTrie.getWords(); // ['dog', 'cat', 'lion', 'bear', 'parrot', 'koala', 'kitten'
 You can also add and remove items from the Trie, and these methods can be chained:
 
 ```javascript
-myTrie.addWord('husky').removeWord('dog');
+myTrie.addWord("husky").removeWord("dog");
 myTrie.getWords(); // ['bear', 'cat', 'husky', 'kitten', koala', lion', 'parrot']
 ```
 
 You can even retrieve anagrams and sub-anagrams of given letters:
 
 ```javascript
-myTrie.getAnagrams('noil'); // ['lion']
-myTrie.getSubAnagrams('racetb'); // ['bear', 'cat']
+myTrie.getAnagrams("noil"); // ['lion']
+myTrie.getSubAnagrams("racetb"); // ['bear', 'cat']
 ```
 
 When you have a large amount of data, Tries are very powerful and can be used to perform fast and efficient retrievals.

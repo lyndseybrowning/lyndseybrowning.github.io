@@ -1,8 +1,7 @@
 ---
-layout: post
-title: "#100DaysofCode - Day 6"
-date: January 14, 2017
-pageClass: post
+title: "100 days of code day 6"
+date: 14th January 2017
+keywords: ["100 days of code"]
 ---
 
 Current Project: [Dictionary API](https://github.com/lyndseybrowning/dictionary-api).
@@ -13,9 +12,9 @@ I want my routes to be validated to prevent incorrect data types being passed an
 
 For one of my routes, I need to validate that **at least one** of the following parameters are passed:
 
-- length
-- prefix
-- suffix
+-   length
+-   prefix
+-   suffix
 
 Users can pass any or all of the above parameters, but there must be a minimum of one passed.
 
@@ -23,7 +22,7 @@ I couldn't find a method to do this using express validator. As far as I could t
 
 ```javascript
 // this function will get length from the query object and will return the error message specified in the second parameter if it is not an integer
-req.checkQuery('length', 'Length should be a Number').optional().isInt();
+req.checkQuery("length", "Length should be a Number").optional().isInt();
 ```
 
 I read about [custom validators](https://github.com/ctavan/express-validator#customvalidators) and so decided to create my own.
@@ -34,42 +33,45 @@ I created a function called **atLeastOneRequired** that would take a bunch of pa
 
 ```javascript
 const customValidators = {
-  atLeastOneRequired(...params) {
-    const filter = params.filter(param => (typeof param !== 'undefined'));
+    atLeastOneRequired(...params) {
+        const filter = params.filter((param) => typeof param !== "undefined");
 
-    return filter.length > 0;
-  }
-}
+        return filter.length > 0;
+    },
+};
 
 export default customValidators;
 ```
 
 The **atLeastOneRequired** function uses ES6's [rest parameter])https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/rest_parameters) syntax. I've talked about this in one of my older posts. If you'd like to find out more, please go [here](http://lyndseyb.co.uk/posts/es6-rest-parameters) to read the full article.
 
-In short, ```...params``` is an iterable array object containing all of the parameters passed to the function and has access to native Array methods such as ```.forEach```, ```.reduce``` and ```.map``` to name a few.
+In short, `...params` is an iterable array object containing all of the parameters passed to the function and has access to native Array methods such as `.forEach`, `.reduce` and `.map` to name a few.
 
 Using rest parameters in this instance is far better for my application because it means I can pass as many parameters as I want in each call. If I'd hardcoded the function to receive three specific parameters then realised later I needed a fourth, I'd have to modify the custom validator again.
 
 I used my custom validator to validate the parameters like so:
 
-**routes/_lists.js**
+**routes/\_lists.js**
 
 ```javascript
-app.get('/api/lists', (req, res) => {
-  const length = req.query.length;
-  const prefix = req.query.prefix;
-  const suffix = req.query.suffix;
+app.get("/api/lists", (req, res) => {
+    const length = req.query.length;
+    const prefix = req.query.prefix;
+    const suffix = req.query.suffix;
 
-  req.check('length, prefix, suffix', 'At least one parameter is required').atLeastOneRequired(length, prefix, suffix);
+    req.check(
+        "length, prefix, suffix",
+        "At least one parameter is required",
+    ).atLeastOneRequired(length, prefix, suffix);
 
-  const errors = req.validationErrors();
+    const errors = req.validationErrors();
 
-  if(errors) {
-    return res.send({
-      url: req.url,
-      errors: errors
-    });
-  }
+    if (errors) {
+        return res.send({
+            url: req.url,
+            errors: errors,
+        });
+    }
 });
 ```
 
@@ -77,13 +79,13 @@ Which returns the follow error object if none of the parameters are passed to th
 
 ```json
 {
-  "url": "/api/lists",
-  "errors": [
-    {
-      "param": "length, prefix, suffix",
-      "msg": "At least one parameter is required"
-    }
-  ]
+    "url": "/api/lists",
+    "errors": [
+        {
+            "param": "length, prefix, suffix",
+            "msg": "At least one parameter is required"
+        }
+    ]
 }
 ```
 
